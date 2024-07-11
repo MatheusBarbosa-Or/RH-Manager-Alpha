@@ -7,6 +7,8 @@
     </constraints>
     <properties>
       <background color="-13750220"/>
+      <enabled value="true"/>
+      <font name="Consolas" size="14" style="0"/>
       <maximumSize width="600" height="360"/>
       <minimumSize width="600" height="360"/>
       <preferredSize width="600" height="360"/>
@@ -25,52 +27,53 @@
       </component>
       <component id="569ec" class="javax.swing.JLabel" binding="UsernameTitle">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="20" style="1"/>
+          <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Nome de Usuário"/>
         </properties>
       </component>
       <component id="84c5a" class="javax.swing.JTextField" binding="UsernameField">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="250" height="-1"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="300" height="-1"/>
           </grid>
         </constraints>
         <properties>
-          <font name="Consolas" size="14" style="1"/>
-        </properties>
-      </component>
-      <component id="54746" class="javax.swing.JLabel" binding="TitlePassword">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Consolas" size="20" style="1"/>
-          <foreground color="-1"/>
-          <text value="Senha"/>
+          <background color="-13750220"/>
+          <caretColor color="-1"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="14" style="0"/>
+          <margin top="2" left="5" bottom="2" right="6"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="b1ab6" class="javax.swing.JPasswordField" binding="UserPasswordField">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="250" height="-1"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="300" height="-1"/>
           </grid>
         </constraints>
         <properties>
-          <font name="Consolas" size="14" style="1"/>
+          <background color="-13750220"/>
+          <caretColor color="-1"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="14" style="0"/>
+          <margin top="2" left="5" bottom="2" right="5"/>
         </properties>
       </component>
       <component id="35fa2" class="javax.swing.JButton" binding="ButtonLogin">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13750220"/>
-          <font name="Consolas" size="16" style="1"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="12" style="1"/>
           <foreground color="-1"/>
+          <margin top="0" left="0" bottom="0" right="0"/>
           <text value="Login"/>
         </properties>
       </component>
@@ -79,18 +82,19 @@
           <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="20" style="1"/>
+          <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Novo Usuário"/>
         </properties>
       </component>
       <component id="af4f1" class="javax.swing.JButton" binding="ButtonCadastro">
         <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13750220"/>
-          <font name="Consolas" size="16" style="1"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="12" style="1"/>
           <foreground color="-1"/>
           <text value="Cadastrar-se"/>
         </properties>
@@ -100,14 +104,14 @@
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="20" style="1"/>
+          <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Entrar"/>
         </properties>
       </component>
       <vspacer id="82d12">
         <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
       <vspacer id="976d6">
@@ -120,6 +124,16 @@
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="54746" class="javax.swing.JLabel" binding="TitlePassword">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+          <text value="Senha"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
