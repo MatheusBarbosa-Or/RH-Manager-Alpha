@@ -7,32 +7,22 @@ public class TelaMenu {
 
     private JFrame FrameMenu;
     private JPanel PanelMenu;
-    private JLabel TitleMenu;
-    private JLabel TitleCadastro;
-    private JButton ButtonCadastro;
-    private JLabel TitleLogin;
-    private JLabel TitleUsername;
-    private JTextField FieldUsername;
-    private JLabel TitlePassword;
-    private JPasswordField passwordFieldLogin;
+    private JTextField UsernameField;
+    private JPasswordField UserPasswordField;
     private JButton ButtonLogin;
+    private JButton ButtonCadastro;
+    private JLabel IconMenu;
+    private JLabel UsernameTitle;
+    private JLabel TitlePassword;
+    private JLabel MenuTitle;
+    private JLabel CadastroTitle;
     private ArrayList<User> usuarios;
+
 
     public TelaMenu() {
 
-        FrameMenu = new JFrame("Menu de Usuários");
+        FrameMenu = new JFrame("RH Manager - Alpha");
         usuarios = new ArrayList<>();
-
-        ButtonCadastro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                User novoUsuario = cadastrarUsuario();
-                if (novoUsuario != null) {
-                    usuarios.add(novoUsuario);
-                    JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso!");
-                }
-            }
-        });
 
         ButtonLogin.addActionListener(new ActionListener() {
             @Override
@@ -44,6 +34,20 @@ public class TelaMenu {
                 } else {
                     JOptionPane.showMessageDialog(FrameMenu, "Nome de usuario ou senha inválida!");
                 }
+
+            }
+        });
+
+
+        ButtonCadastro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                User novoUsuario = cadastrarUsuario();
+                if (novoUsuario != null) {
+                    usuarios.add(novoUsuario);
+                    JOptionPane.showMessageDialog(FrameMenu, "Cadastro Realizado com Sucesso!");
+                }
+
             }
         });
 
@@ -79,8 +83,8 @@ public class TelaMenu {
     }
 
     private User realizarLogin() {
-        String username = FieldUsername.getText();
-        String password = new String(passwordFieldLogin.getPassword());
+        String username = UsernameField.getText();
+        String password = new String(UserPasswordField.getPassword());
 
         for (User usuario : usuarios) {
             if (username.equals(usuario.username) && password.equals(usuario.password)) {
