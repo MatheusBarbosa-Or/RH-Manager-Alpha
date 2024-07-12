@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="TelaCadastro.telaCadastro">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="18" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="TelaRegister.TelaCadastro">
+  <grid id="27dc6" binding="PanelCadastro" layout-manager="GridLayoutManager" row-count="18" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="770" height="615"/>
@@ -13,7 +13,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="3825d" class="javax.swing.JLabel">
+      <component id="3825d" class="javax.swing.JLabel" binding="IconCadasto">
         <constraints>
           <grid row="0" column="0" row-span="18" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -22,7 +22,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="df36f" class="javax.swing.JLabel">
+      <component id="df36f" class="javax.swing.JLabel" binding="CadastroTitle">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -32,7 +32,7 @@
           <text value="Cadastro de usuario"/>
         </properties>
       </component>
-      <component id="4aaee" class="javax.swing.JLabel">
+      <component id="4aaee" class="javax.swing.JLabel" binding="UsernameTitleCadastro">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -42,7 +42,7 @@
           <text value="Nome de usuario:"/>
         </properties>
       </component>
-      <component id="e8227" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="e8227" class="javax.swing.JTextField" binding="UsernameFieldCadastro">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -50,7 +50,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="1a502" class="javax.swing.JLabel">
+      <component id="1a502" class="javax.swing.JLabel" binding="PasswordTitleCadastro">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -60,7 +60,7 @@
           <text value="Senha:"/>
         </properties>
       </component>
-      <component id="27ce8" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+      <component id="27ce8" class="javax.swing.JPasswordField" binding="PasswordFieldCadastro">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -68,7 +68,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="5bfd" class="javax.swing.JLabel">
+      <component id="5bfd" class="javax.swing.JLabel" binding="NameTitleCadastro">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -78,7 +78,7 @@
           <text value="Nome:"/>
         </properties>
       </component>
-      <component id="de9b0" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="de9b0" class="javax.swing.JTextField" binding="NameFieldCadastro">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -86,7 +86,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="995e6" class="javax.swing.JLabel">
+      <component id="995e6" class="javax.swing.JLabel" binding="CpfTitleCadastro">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -96,7 +96,7 @@
           <text value="CPF:"/>
         </properties>
       </component>
-      <component id="7889d" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="7889d" class="javax.swing.JTextField" binding="CpfFieldCadastro">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -104,7 +104,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="91f77" class="javax.swing.JLabel">
+      <component id="91f77" class="javax.swing.JLabel" binding="EmailTitleCadastro">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -114,7 +114,7 @@
           <text value="Email:"/>
         </properties>
       </component>
-      <component id="ff93c" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="ff93c" class="javax.swing.JTextField" binding="EmailFieldCadastro">
         <constraints>
           <grid row="10" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -122,7 +122,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="40662" class="javax.swing.JLabel">
+      <component id="40662" class="javax.swing.JLabel" binding="DobTitleCadastro">
         <constraints>
           <grid row="11" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -132,7 +132,7 @@
           <text value="Data de nascimento:"/>
         </properties>
       </component>
-      <component id="c6f15" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+      <component id="c6f15" class="javax.swing.JTextField" binding="DobFieldCadastro">
         <constraints>
           <grid row="12" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -140,7 +140,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="e44eb" class="javax.swing.JLabel">
+      <component id="e44eb" class="javax.swing.JLabel" binding="SexTitleCadastro">
         <constraints>
           <grid row="13" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -150,7 +150,7 @@
           <text value="Sexo:"/>
         </properties>
       </component>
-      <component id="aceaf" class="javax.swing.JRadioButton" binding="femininoRadioButton" default-binding="true">
+      <component id="aceaf" class="javax.swing.JRadioButton" binding="FemRadioButton">
         <constraints>
           <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -161,7 +161,7 @@
           <text value="Feminino"/>
         </properties>
       </component>
-      <component id="90ffb" class="javax.swing.JRadioButton" binding="masculinoRadioButton" default-binding="true">
+      <component id="90ffb" class="javax.swing.JRadioButton" binding="MascRadioButton">
         <constraints>
           <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -172,7 +172,7 @@
           <text value="Masculino"/>
         </properties>
       </component>
-      <component id="39ac7" class="javax.swing.JRadioButton" binding="outrosRadioButton" default-binding="true">
+      <component id="39ac7" class="javax.swing.JRadioButton" binding="OutrosRadioButton">
         <constraints>
           <grid row="14" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -183,7 +183,7 @@
           <text value="Outros"/>
         </properties>
       </component>
-      <component id="d61a1" class="javax.swing.JLabel">
+      <component id="d61a1" class="javax.swing.JLabel" binding="PosTitleCadastro">
         <constraints>
           <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -193,7 +193,7 @@
           <text value="Cargo:"/>
         </properties>
       </component>
-      <component id="77de5" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+      <component id="77de5" class="javax.swing.JTextField" binding="PosFieldCadastro">
         <constraints>
           <grid row="16" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -201,7 +201,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="6f395" class="javax.swing.JButton" binding="cadastrarSeButton" default-binding="true">
+      <component id="6f395" class="javax.swing.JButton" binding="RegisterButtonCadastro">
         <constraints>
           <grid row="17" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -214,7 +214,7 @@
           <text value="Cadastrar-se"/>
         </properties>
       </component>
-      <component id="8da8b" class="javax.swing.JButton" binding="cancelarButton" default-binding="true">
+      <component id="8da8b" class="javax.swing.JButton" binding="CancelButtonCadastro">
         <constraints>
           <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

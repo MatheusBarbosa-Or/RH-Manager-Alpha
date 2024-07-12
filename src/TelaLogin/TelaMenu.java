@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import Classes.User;
+import TelaRegister.TelaCadastro;
 
 public class TelaMenu {
 
@@ -16,7 +17,7 @@ public class TelaMenu {
     private JButton ButtonCadastro;
     private JLabel IconMenu;
     private JLabel UsernameTitle;
-    private JLabel TitlePassword;
+    private JLabel PasswordTitle;
     private JLabel MenuTitle;
     private JLabel CadastroTitle;
     private ArrayList<User> usuarios;
@@ -42,11 +43,8 @@ public class TelaMenu {
         ButtonCadastro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User novoUsuario = cadastrarUsuario();
-                if (novoUsuario != null) {
-                    usuarios.add(novoUsuario);
-                    JOptionPane.showMessageDialog(FrameMenu, "Cadastro Realizado com Sucesso!");
-                }
+                TelaCadastro telaCadastro = new TelaCadastro(usuarios,FrameMenu);
+                FrameMenu.setVisible(false);
             }
         });
 
@@ -54,31 +52,6 @@ public class TelaMenu {
         FrameMenu.add(PanelMenu);
         FrameMenu.pack();
         FrameMenu.setVisible(true);
-    }
-
-    private User cadastrarUsuario() {
-        String username = JOptionPane.showInputDialog(FrameMenu, "Insira um nome de usuário:");
-        String password = JOptionPane.showInputDialog(FrameMenu, "Insira uma senha:");
-        String nome = JOptionPane.showInputDialog(FrameMenu, "Insira seu nome:");
-        String cpf = JOptionPane.showInputDialog(FrameMenu, "Insira seu CPF:");
-        String email = JOptionPane.showInputDialog(FrameMenu, "Insira seu e-mail:");
-        String dataNascimento = JOptionPane.showInputDialog(FrameMenu, "Insira sua data de nascimento:");
-        String sexo = JOptionPane.showInputDialog(FrameMenu, "Insira seu sexo:");
-        String cargo = JOptionPane.showInputDialog(FrameMenu, "Insira seu cargo:");
-
-        if (username != null && password != null) {
-            User usuario = new User();
-            usuario.setUsername(username);
-            usuario.setPassword(password);
-            usuario.setNome(nome);
-            usuario.setCpf(cpf);
-            usuario.setEmail(email);
-            usuario.setDataNascimento(dataNascimento);
-            usuario.setSexo(sexo);
-            usuario.setCargo(cargo);
-            return usuario;
-        }
-        return null;
     }
 
     private User realizarLogin() {
