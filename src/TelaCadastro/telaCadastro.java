@@ -1,4 +1,4 @@
-package testeTela;
+package TelaCadastro;
 
 import javax.swing.*;
 

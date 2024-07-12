@@ -1,7 +1,10 @@
+package TelaLogin;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import Classes.User;
 
 public class TelaMenu {
 
@@ -18,7 +21,6 @@ public class TelaMenu {
     private JLabel CadastroTitle;
     private ArrayList<User> usuarios;
 
-
     public TelaMenu() {
 
         FrameMenu = new JFrame("RH Manager - Alpha");
@@ -34,10 +36,8 @@ public class TelaMenu {
                 } else {
                     JOptionPane.showMessageDialog(FrameMenu, "Nome de usuario ou senha inválida!");
                 }
-
             }
         });
-
 
         ButtonCadastro.addActionListener(new ActionListener() {
             @Override
@@ -47,7 +47,6 @@ public class TelaMenu {
                     usuarios.add(novoUsuario);
                     JOptionPane.showMessageDialog(FrameMenu, "Cadastro Realizado com Sucesso!");
                 }
-
             }
         });
 
@@ -58,25 +57,25 @@ public class TelaMenu {
     }
 
     private User cadastrarUsuario() {
-        String username = JOptionPane.showInputDialog(FrameMenu,"Insira um nome de usuário:");
-        String password = JOptionPane.showInputDialog(FrameMenu,"Insira uma senha:");
-        String nome = JOptionPane.showInputDialog(FrameMenu,"Insira seu nome:");
-        String cpf = JOptionPane.showInputDialog(FrameMenu,"Insira seu CPF:");
-        String email = JOptionPane.showInputDialog(FrameMenu,"Insira seu e-mail:");
-        String dataNascimento = JOptionPane.showInputDialog(FrameMenu,"Insira sua data de nascimento:");
-        String sexo = JOptionPane.showInputDialog(FrameMenu,"Insira seu sexo:");
-        String cargo = JOptionPane.showInputDialog(FrameMenu,"Insira seu cargo:");
+        String username = JOptionPane.showInputDialog(FrameMenu, "Insira um nome de usuário:");
+        String password = JOptionPane.showInputDialog(FrameMenu, "Insira uma senha:");
+        String nome = JOptionPane.showInputDialog(FrameMenu, "Insira seu nome:");
+        String cpf = JOptionPane.showInputDialog(FrameMenu, "Insira seu CPF:");
+        String email = JOptionPane.showInputDialog(FrameMenu, "Insira seu e-mail:");
+        String dataNascimento = JOptionPane.showInputDialog(FrameMenu, "Insira sua data de nascimento:");
+        String sexo = JOptionPane.showInputDialog(FrameMenu, "Insira seu sexo:");
+        String cargo = JOptionPane.showInputDialog(FrameMenu, "Insira seu cargo:");
 
         if (username != null && password != null) {
             User usuario = new User();
-            usuario.username = username;
-            usuario.password = password;
-            usuario.nome = nome;
-            usuario.cpf = cpf;
-            usuario.email = email;
-            usuario.dataNascimento = dataNascimento;
-            usuario.sexo = sexo;
-            usuario.cargo = cargo;
+            usuario.setUsername(username);
+            usuario.setPassword(password);
+            usuario.setNome(nome);
+            usuario.setCpf(cpf);
+            usuario.setEmail(email);
+            usuario.setDataNascimento(dataNascimento);
+            usuario.setSexo(sexo);
+            usuario.setCargo(cargo);
             return usuario;
         }
         return null;
@@ -87,7 +86,7 @@ public class TelaMenu {
         String password = new String(UserPasswordField.getPassword());
 
         for (User usuario : usuarios) {
-            if (username.equals(usuario.username) && password.equals(usuario.password)) {
+            if (username.equals(usuario.getUsername()) && password.equals(usuario.getPassword())) {
                 return usuario;
             }
         }
