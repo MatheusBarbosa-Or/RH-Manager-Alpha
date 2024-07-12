@@ -14,4 +14,6 @@ public class telaCadastro {
     private JRadioButton masculinoRadioButton;
     private JRadioButton outrosRadioButton;
     private JTextField textField6;
+    private JButton cancelarButton;
+    private JButton cadastrarSeButton;
 }
