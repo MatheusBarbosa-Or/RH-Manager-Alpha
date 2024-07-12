@@ -35,12 +35,14 @@ public class TelaCadastro {
     private JLabel PosTitleCadastro;
     private ArrayList<User> usuarios;
     private JFrame FrameMenu;
+    private String sexo;
 
 
     public TelaCadastro(ArrayList<User> usuarios, JFrame frameMenu) {
         this.usuarios = usuarios;
         this.FrameMenu = frameMenu;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
+        sexo = "";
 
         FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameCadastro.add(PanelCadastro);
@@ -67,6 +69,24 @@ public class TelaCadastro {
                 FrameMenu.setVisible(true);
             }
         });
+
+        ActionListener sexoListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == FemRadioButton) {
+                    sexo = "Feminino";
+                } else if (e.getSource() == MascRadioButton) {
+                    sexo = "Masculino";
+                } else if (e.getSource() == OutrosRadioButton) {
+                    sexo = "Outro";
+                }
+            }
+        };
+
+        FemRadioButton.addActionListener(sexoListener);
+        MascRadioButton.addActionListener(sexoListener);
+        OutrosRadioButton.addActionListener(sexoListener);
+
     }
 
     private User cadastrarUsuario() {
@@ -76,7 +96,6 @@ public class TelaCadastro {
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
         String dataNascimento = DobFieldCadastro.getText();
-        String sexo = NameFieldCadastro.getText();
         String cargo = PosFieldCadastro.getText();
 
         if (username != null && password != null) {
