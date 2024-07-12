@@ -46,7 +46,7 @@
           <caretColor color="-1"/>
           <enabled value="true"/>
           <font name="Consolas" size="14" style="0"/>
-          <margin top="2" left="5" bottom="2" right="6"/>
+          <margin top="2" left="9" bottom="2" right="6"/>
           <text value=""/>
         </properties>
       </component>
