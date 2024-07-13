@@ -78,7 +78,7 @@ public class TelaCadastro {
                 } else if (e.getSource() == MascRadioButton) {
                     sexo = "Masculino";
                 } else if (e.getSource() == OutrosRadioButton) {
-                    sexo = "Outro";
+                    sexo = "Outros";
                 }
             }
         };
