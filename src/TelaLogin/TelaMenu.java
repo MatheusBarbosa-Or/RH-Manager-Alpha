@@ -28,6 +28,13 @@ public class TelaMenu {
         FrameMenu = new JFrame("RH Manager - Alpha");
         usuarios = new ArrayList<>();
 
+        User Admin = new User();
+        Admin.setUsername("Admin");
+        Admin.setPassword("Admin");
+        Admin.setNome("Admin");
+        Admin.setCargo("Admin");
+        usuarios.add(Admin);
+
         ButtonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,6 +43,7 @@ public class TelaMenu {
                     JOptionPane.showMessageDialog(FrameMenu, "Login feito com sucesso!\n");
                     TelaInicial telaInicial = new TelaInicial(usuarios, FrameMenu, usuarioLogado);
                     FrameMenu.setVisible(false);
+                    limparCampos();
                 } else {
                     JOptionPane.showMessageDialog(FrameMenu, "Nome de usuario ou senha inválida!");
                 }
@@ -47,6 +55,7 @@ public class TelaMenu {
             public void actionPerformed(ActionEvent e) {
                 TelaCadastro telaCadastro = new TelaCadastro(usuarios,FrameMenu);
                 FrameMenu.setVisible(false);
+                limparCampos();
             }
         });
 
@@ -67,5 +76,11 @@ public class TelaMenu {
         }
         return null;
     }
+
+    public void limparCampos() {
+        UsernameField.setText("");
+        UserPasswordField.setText("");
+    }
+
 
 }

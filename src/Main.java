@@ -5,5 +5,3 @@ public class Main {
         TelaMenu telaMenu = new TelaMenu();
     }
 }
-
-//teste de pull request pelo intellij
