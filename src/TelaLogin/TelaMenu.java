@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import Classes.User;
 import TelaRegister.TelaCadastro;
+import TelaHomepage.TelaInicial;
 
 public class TelaMenu {
 
@@ -32,8 +33,9 @@ public class TelaMenu {
             public void actionPerformed(ActionEvent e) {
                 User usuarioLogado = realizarLogin();
                 if (usuarioLogado != null) {
-                    JOptionPane.showMessageDialog(FrameMenu, "Login feito com sucesso!\n" + usuarioLogado);
-                    usuarioLogado.identify();
+                    JOptionPane.showMessageDialog(FrameMenu, "Login feito com sucesso!\n");
+                    TelaInicial telaInicial = new TelaInicial(usuarios, FrameMenu, usuarioLogado);
+                    FrameMenu.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(FrameMenu, "Nome de usuario ou senha inválida!");
                 }
