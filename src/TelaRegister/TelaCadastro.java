@@ -33,6 +33,14 @@ public class TelaCadastro {
     private JLabel DobTitleCadastro;
     private JLabel SexTitleCadastro;
     private JLabel PosTitleCadastro;
+    private JLabel TurnTitleCadastro;
+    private JComboBox DayComboBoxCadastro;
+    private JComboBox MonthComboBoxCadastro;
+    private JComboBox YearComboBoxCadastro;
+    private JComboBox GeneroComboBoxCadastro;
+    private JComboBox PosComboBoxCadastro;
+    private JComboBox TurnComboBoxCadastro;
+
     private ArrayList<User> usuarios;
     private JFrame FrameMenu;
     private String sexo;
