@@ -28,6 +28,13 @@ public class TelaMenu {
         FrameMenu = new JFrame("RH Manager - Alpha");
         usuarios = new ArrayList<>();
 
+        User Admin = new User();
+        Admin.setUsername("Admin");
+        Admin.setPassword("Admin");
+        Admin.setNome("Admin");
+        Admin.setCargo("Admin");
+        usuarios.add(Admin);
+
         ButtonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
