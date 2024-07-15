@@ -6,6 +6,7 @@ import Classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TelaCadastro {
 
@@ -16,14 +17,9 @@ public class TelaCadastro {
     private JTextField NameFieldCadastro;
     private JTextField CpfFieldCadastro;
     private JTextField EmailFieldCadastro;
-    private JTextField DobFieldCadastro;
-    private JRadioButton FemRadioButton;
-    private JRadioButton MascRadioButton;
-    private JRadioButton OutrosRadioButton;
-    private JTextField PosFieldCadastro;
     private JButton CancelButtonCadastro;
     private JButton RegisterButtonCadastro;
-    private JLabel IconCadasto;
+    private JLabel IconCadastro;
     private JLabel CadastroTitle;
     private JLabel UsernameTitleCadastro;
     private JLabel PasswordTitleCadastro;
@@ -33,6 +29,14 @@ public class TelaCadastro {
     private JLabel DobTitleCadastro;
     private JLabel SexTitleCadastro;
     private JLabel PosTitleCadastro;
+    private JLabel TurnTitleCadastro;
+    private JComboBox DayComboBoxCadastro;
+    private JComboBox MonthComboBoxCadastro;
+    private JComboBox YearComboBoxCadastro;
+    private JComboBox GeneroComboBoxCadastro;
+    private JComboBox PosComboBoxCadastro;
+    private JComboBox TurnComboBoxCadastro;
+
     private ArrayList<User> usuarios;
     private JFrame FrameMenu;
     private String sexo;
@@ -48,6 +52,25 @@ public class TelaCadastro {
         FrameCadastro.add(PanelCadastro);
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
+
+        if (DayComboBoxCadastro.getItemCount() == 0) {
+            for (int i = 1; i <= 31; i++) {
+                DayComboBoxCadastro.addItem(i);
+            }
+        }
+
+        if (MonthComboBoxCadastro.getItemCount() == 0) {
+            for (int i = 1; i <= 12; i++) {
+                MonthComboBoxCadastro.addItem(i);
+            }
+        }
+
+        if (YearComboBoxCadastro.getItemCount() == 0) {
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            for (int i = currentYear; i >= 1900; i--) {
+                YearComboBoxCadastro.addItem(i);
+            }
+        }
 
         RegisterButtonCadastro.addActionListener(new ActionListener() {
             @Override
@@ -70,24 +93,8 @@ public class TelaCadastro {
             }
         });
 
-        ActionListener sexoListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == FemRadioButton) {
-                    sexo = "Feminino";
-                } else if (e.getSource() == MascRadioButton) {
-                    sexo = "Masculino";
-                } else if (e.getSource() == OutrosRadioButton) {
-                    sexo = "Outros";
-                }
-            }
-        };
-
-        FemRadioButton.addActionListener(sexoListener);
-        MascRadioButton.addActionListener(sexoListener);
-        OutrosRadioButton.addActionListener(sexoListener);
-
     }
+
 
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
@@ -95,8 +102,12 @@ public class TelaCadastro {
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
-        String dataNascimento = DobFieldCadastro.getText();
-        String cargo = PosFieldCadastro.getText();
+        int dia = (int) DayComboBoxCadastro.getSelectedItem();
+        int mes = (int) MonthComboBoxCadastro.getSelectedItem();
+        int ano = (int) YearComboBoxCadastro.getSelectedItem();
+        String dataNascimento = String.format("%02d/%02d/%04d", dia, mes, ano);
+
+
 
         if (username != null && password != null) {
             User usuario = new User();
@@ -107,7 +118,7 @@ public class TelaCadastro {
             usuario.setEmail(email);
             usuario.setDataNascimento(dataNascimento);
             usuario.setSexo(sexo);
-            usuario.setCargo(cargo);
+            usuario.setCargo(username);
             return usuario;
         }
         return null;
