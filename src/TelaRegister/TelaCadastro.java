@@ -6,6 +6,7 @@ import Classes.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TelaCadastro {
 
@@ -52,6 +53,25 @@ public class TelaCadastro {
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
 
+        if (DayComboBoxCadastro.getItemCount() == 0) {
+            for (int i = 1; i <= 31; i++) {
+                DayComboBoxCadastro.addItem(i);
+            }
+        }
+
+        if (MonthComboBoxCadastro.getItemCount() == 0) {
+            for (int i = 1; i <= 12; i++) {
+                MonthComboBoxCadastro.addItem(i);
+            }
+        }
+
+        if (YearComboBoxCadastro.getItemCount() == 0) {
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            for (int i = currentYear; i >= 1900; i--) {
+                YearComboBoxCadastro.addItem(i);
+            }
+        }
+
         RegisterButtonCadastro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,6 +102,11 @@ public class TelaCadastro {
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
+        int dia = (int) DayComboBoxCadastro.getSelectedItem();
+        int mes = (int) MonthComboBoxCadastro.getSelectedItem();
+        int ano = (int) YearComboBoxCadastro.getSelectedItem();
+        String dataNascimento = String.format("%02d/%02d/%04d", dia, mes, ano);
+
 
 
         if (username != null && password != null) {
@@ -91,7 +116,7 @@ public class TelaCadastro {
             usuario.setNome(nome);
             usuario.setCpf(cpf);
             usuario.setEmail(email);
-            usuario.setDataNascimento(username);
+            usuario.setDataNascimento(dataNascimento);
             usuario.setSexo(sexo);
             usuario.setCargo(username);
             return usuario;
