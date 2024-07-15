@@ -265,20 +265,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="Gerente de Projetos"/>
-            <item value="Engenheiro de Software"/>
-            <item value="Desenvolvedor Senior"/>
-            <item value="Desenvolvedor Pleno"/>
-            <item value="Desenvolvedor Junior"/>
-            <item value="Estagiario de Ti"/>
-            <item value="Gerente Administrativo"/>
-            <item value="Auxiliar Administrativo"/>
-            <item value="Advogado Chefe"/>
-            <item value="Auxiliar Juridico"/>
-            <item value="Estagiario Juridico"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>

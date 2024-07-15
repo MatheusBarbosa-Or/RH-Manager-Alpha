@@ -1,6 +1,8 @@
 package TelaRegister;
 
 import javax.swing.*;
+import javax.swing.text.Position;
+
 import Classes.User;
 
 import java.awt.event.ActionEvent;
@@ -72,6 +74,14 @@ public class TelaCadastro {
             }
         }
 
+        //BoxCargo
+
+        PosComboBoxCadastro.addItem("Gerente de Projetos");    PosComboBoxCadastro.addItem("Estagiario de Ti");    PosComboBoxCadastro.addItem("Estagiario Juridico");
+        PosComboBoxCadastro.addItem("Engenheiro de Software");    PosComboBoxCadastro.addItem("Gerente Administrativo");
+        PosComboBoxCadastro.addItem("Desenvolvedor Senior");    PosComboBoxCadastro.addItem("Auxiliar Administrativo");
+        PosComboBoxCadastro.addItem("Desenvolvedor Pleno");    PosComboBoxCadastro.addItem("Advogado Chefe");
+        PosComboBoxCadastro.addItem("Desenvolvedor Junior");    PosComboBoxCadastro.addItem("Auxiliar Juridico");
+
         RegisterButtonCadastro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,6 +116,7 @@ public class TelaCadastro {
         int mes = (int) MonthComboBoxCadastro.getSelectedItem();
         int ano = (int) YearComboBoxCadastro.getSelectedItem();
         String dataNascimento = String.format("%02d/%02d/%04d", dia, mes, ano);
+        String cargo = (String) PosComboBoxCadastro.getSelectedItem();
 
 
 
@@ -118,7 +129,7 @@ public class TelaCadastro {
             usuario.setEmail(email);
             usuario.setDataNascimento(dataNascimento);
             usuario.setSexo(sexo);
-            usuario.setCargo(username);
+            usuario.setCargo(cargo);
             return usuario;
         }
         return null;
