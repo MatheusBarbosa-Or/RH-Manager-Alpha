@@ -16,14 +16,9 @@ public class TelaCadastro {
     private JTextField NameFieldCadastro;
     private JTextField CpfFieldCadastro;
     private JTextField EmailFieldCadastro;
-    private JTextField DobFieldCadastro;
-    private JRadioButton FemRadioButton;
-    private JRadioButton MascRadioButton;
-    private JRadioButton OutrosRadioButton;
-    private JTextField PosFieldCadastro;
     private JButton CancelButtonCadastro;
     private JButton RegisterButtonCadastro;
-    private JLabel IconCadasto;
+    private JLabel IconCadastro;
     private JLabel CadastroTitle;
     private JLabel UsernameTitleCadastro;
     private JLabel PasswordTitleCadastro;
@@ -78,24 +73,8 @@ public class TelaCadastro {
             }
         });
 
-        ActionListener sexoListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == FemRadioButton) {
-                    sexo = "Feminino";
-                } else if (e.getSource() == MascRadioButton) {
-                    sexo = "Masculino";
-                } else if (e.getSource() == OutrosRadioButton) {
-                    sexo = "Outros";
-                }
-            }
-        };
-
-        FemRadioButton.addActionListener(sexoListener);
-        MascRadioButton.addActionListener(sexoListener);
-        OutrosRadioButton.addActionListener(sexoListener);
-
     }
+
 
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
@@ -103,8 +82,7 @@ public class TelaCadastro {
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
-        String dataNascimento = DobFieldCadastro.getText();
-        String cargo = PosFieldCadastro.getText();
+
 
         if (username != null && password != null) {
             User usuario = new User();
@@ -113,9 +91,9 @@ public class TelaCadastro {
             usuario.setNome(nome);
             usuario.setCpf(cpf);
             usuario.setEmail(email);
-            usuario.setDataNascimento(dataNascimento);
+            usuario.setDataNascimento(username);
             usuario.setSexo(sexo);
-            usuario.setCargo(cargo);
+            usuario.setCargo(username);
             return usuario;
         }
         return null;
