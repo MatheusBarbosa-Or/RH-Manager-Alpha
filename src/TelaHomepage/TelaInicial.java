@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import Classes.User;
-import TelaRegister.TelaCadastro;
-import TelaLogin.TelaMenu;
 
 
 public class TelaInicial {
@@ -17,9 +15,10 @@ public class TelaInicial {
     private JLabel CpfTitleHomepage;
     private JLabel DobTitleHomepage;
     private JLabel EmailTitleHomepage;
-    private JLabel SexoTitleHomepage;
+    private JLabel GeneroTitleHomepage;
     private JLabel PosTitleHomepage;
     private JButton ButtonSaidaHomepage;
+    private JLabel TurnTitleHomepage;
     private JFrame FrameInicial;
     private ArrayList<User> usuarios;
     private JFrame FrameMenu;
@@ -33,8 +32,9 @@ public class TelaInicial {
         CpfTitleHomepage.setText("CPF: " + usuarioLogado.getCpf());
         DobTitleHomepage.setText("Data de Nascimento: " + usuarioLogado.getDataNascimento());
         EmailTitleHomepage.setText("Email: " + usuarioLogado.getEmail());
-        SexoTitleHomepage.setText("Sexo: " + usuarioLogado.getSexo());
+        GeneroTitleHomepage.setText("Genero: " + usuarioLogado.getGenero());
         PosTitleHomepage.setText("Cargo: " + usuarioLogado.getCargo());
+        TurnTitleHomepage.setText("Horario: " + usuarioLogado.getHorario());
 
 
         ButtonSaidaHomepage.addActionListener(new ActionListener() {

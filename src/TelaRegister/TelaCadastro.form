@@ -243,12 +243,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="Feminino"/>
-            <item value="Masculino"/>
-            <item value="Outros"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>
@@ -292,13 +287,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="7:00 as 14:00"/>
-            <item value="14:00 as 21:00"/>
-            <item value="10:00 as 14:00"/>
-            <item value="14:00 as 18:00"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>

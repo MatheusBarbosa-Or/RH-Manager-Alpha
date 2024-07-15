@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="TelaHomepage.TelaInicial">
-  <grid id="27dc6" binding="PanelHomepage" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="PanelHomepage" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="583" height="511"/>
@@ -43,7 +43,7 @@
           <text value="Data de Nascimento"/>
         </properties>
       </component>
-      <component id="e1038" class="javax.swing.JLabel" binding="SexoTitleHomepage">
+      <component id="e1038" class="javax.swing.JLabel" binding="GeneroTitleHomepage">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -85,7 +85,7 @@
       </component>
       <component id="8da7e" class="javax.swing.JButton" binding="ButtonSaidaHomepage">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13750220"/>
@@ -104,6 +104,16 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="E-Mail"/>
+        </properties>
+      </component>
+      <component id="19a99" class="javax.swing.JLabel" binding="TurnTitleHomepage">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+          <text value="Horario"/>
         </properties>
       </component>
     </children>

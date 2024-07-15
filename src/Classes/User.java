@@ -7,8 +7,9 @@ public class User {
     private String cpf;
     private String email;
     private String dataNascimento;
-    private String sexo;
+    private String genero;
     private String cargo;
+    private String horario;
 
     // Getters and setters
     public String getUsername() {
@@ -59,12 +60,12 @@ public class User {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getCargo() {
@@ -75,17 +76,28 @@ public class User {
         this.cargo = cargo;
     }
 
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+
+
     public void identify(){
         System.out.println("Nome: " + this.nome);
         System.out.println("CPF: " + this.cpf);
         System.out.println("Email: " + this.email);
         System.out.println("Data de nascimento: " + this.dataNascimento);
-        System.out.println("Sexo: " + this.sexo);
+        System.out.println("Sexo: " + this.genero);
         System.out.println("Cargo: " + this.cargo);
+        System.out.println("Horario: " + this.horario);
     }
 
     @Override
     public String toString() {
-        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nEmail: " + this.email + "\nData de nascimento: " + this.dataNascimento + "\nSexo: " + this.sexo + "\nCargo: " + this.cargo;
+        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nEmail: " + this.email + "\nData de nascimento: " + this.dataNascimento + "\nSexo: " + this.genero + "\nCargo: " + this.cargo + "\nHorario: " + this.horario;
     }
 }
