@@ -192,40 +192,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="01"/>
-            <item value="02"/>
-            <item value="03"/>
-            <item value="04"/>
-            <item value="05"/>
-            <item value="06"/>
-            <item value="07"/>
-            <item value="08"/>
-            <item value="09"/>
-            <item value="10"/>
-            <item value="11"/>
-            <item value="12"/>
-            <item value="13"/>
-            <item value="14"/>
-            <item value="15"/>
-            <item value="16"/>
-            <item value="17"/>
-            <item value="18"/>
-            <item value="19"/>
-            <item value="20"/>
-            <item value="21"/>
-            <item value="22"/>
-            <item value="23"/>
-            <item value="24"/>
-            <item value="25"/>
-            <item value="26"/>
-            <item value="27"/>
-            <item value="28"/>
-            <item value="29"/>
-            <item value="30"/>
-            <item value="31"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>
@@ -242,21 +209,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="01"/>
-            <item value="02"/>
-            <item value="03"/>
-            <item value="04"/>
-            <item value="05"/>
-            <item value="06"/>
-            <item value="07"/>
-            <item value="08"/>
-            <item value="09"/>
-            <item value="10"/>
-            <item value="11"/>
-            <item value="12"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>
@@ -273,12 +226,7 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <inheritsPopupMenu value="false"/>
-          <model>
-            <item value=""/>
-            <item value="2000"/>
-            <item value="2010"/>
-            <item value="2020"/>
-          </model>
+          <model/>
           <opaque value="true"/>
         </properties>
       </component>
