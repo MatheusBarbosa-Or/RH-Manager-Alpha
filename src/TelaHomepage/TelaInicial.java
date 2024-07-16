@@ -28,6 +28,14 @@ public class TelaInicial {
         this.usuarios = usuarios;
         this.FrameMenu = frameMenu;
 
+        if (usuarioLogado.getGenero().equals("Feminino")){
+            ProfileHomepage.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
+        } else if (usuarioLogado.getGenero().equals("Masculino")) {
+            ProfileHomepage.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
+        } else if (usuarioLogado.getGenero().equals("Outros")) {
+            ProfileHomepage.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
+        }
+
         NameTitleHomepage.setText("Nome: " + usuarioLogado.getNome());
         CpfTitleHomepage.setText("CPF: " + usuarioLogado.getCpf());
         DobTitleHomepage.setText("Data de Nascimento: " + usuarioLogado.getDataNascimento());
