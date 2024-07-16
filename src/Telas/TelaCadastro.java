@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TelaCadastro {
 
@@ -128,6 +130,12 @@ public class TelaCadastro {
         });
 
     }
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@.{5,}\\.com$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
@@ -142,6 +150,12 @@ public class TelaCadastro {
         String genero = (String) GeneroComboBoxCadastro.getSelectedItem();
         String cargo = (String) PosComboBoxCadastro.getSelectedItem();
         String horario = (String) TurnComboBoxCadastro.getSelectedItem();
+
+        // Verificação do email
+        if (!isValidEmail(email)) {
+            JOptionPane.showMessageDialog(FrameCadastro, "Email inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
 
         /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
             JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
