@@ -1,4 +1,4 @@
-package TelaHomepage;
+package Telas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import Classes.User;
 public class TelaInicial {
     private JPanel PanelHomepage;
     private JLabel ProfileHomepage;
-    private JLabel TituloRegistro;
+    private JLabel TituloRegistroHomepage;
     private JLabel NameTitleHomepage;
     private JLabel CpfTitleHomepage;
     private JLabel DobTitleHomepage;

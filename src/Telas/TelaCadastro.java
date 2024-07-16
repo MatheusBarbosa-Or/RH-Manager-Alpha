@@ -1,4 +1,4 @@
-package TelaRegister;
+package Telas;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -10,9 +10,6 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.text.MaskFormatter;
-import java.text.ParseException;
 
 public class TelaCadastro {
 
@@ -151,7 +148,7 @@ public class TelaCadastro {
         /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || sexo.isEmpty() || cargo.isEmpty()) {
                 JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 return null;
-        }*/
+                }*/
 
         try {
             if (cpf.length() != 14) {

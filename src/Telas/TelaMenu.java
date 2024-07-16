@@ -1,12 +1,10 @@
-package TelaLogin;
+package Telas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import Classes.User;
-import TelaRegister.TelaCadastro;
-import TelaHomepage.TelaInicial;
 
 public class TelaMenu {
 
