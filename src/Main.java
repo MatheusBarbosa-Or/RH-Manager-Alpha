@@ -1,7 +1,7 @@
-import Telas.TelaMenu;
+import Telas.TelaLogin;
 
 public class Main {
     public static void main(String[] args) {
-        TelaMenu telaMenu = new TelaMenu();
+        TelaLogin telaLogin = new TelaLogin();
     }
 }

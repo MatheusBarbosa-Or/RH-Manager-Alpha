@@ -41,13 +41,13 @@ public class TelaCadastro {
     private JComboBox TurnComboBoxCadastro;
 
     private ArrayList<User> usuarios;
-    private JFrame FrameMenu;
+    private JFrame FrameRegistro;
     private String genero;
 
 
-    public TelaCadastro(ArrayList<User> usuarios, JFrame frameMenu) {
+    public TelaCadastro(ArrayList<User> usuarios, JFrame frameRegistro) {
         this.usuarios = usuarios;
-        this.FrameMenu = frameMenu;
+        this.FrameRegistro = frameRegistro;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
         genero = "";
         try {
@@ -56,7 +56,6 @@ public class TelaCadastro {
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao formatar", "ERRO", JOptionPane.ERROR);
         }
-
 
         FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameCadastro.add(PanelCadastro);
@@ -101,7 +100,7 @@ public class TelaCadastro {
                     usuarios.add(novoUsuario);
                     JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                     FrameCadastro.setVisible(false);
-                    FrameMenu.setVisible(true);
+                    FrameRegistro.setVisible(true);
                 }
             }
         });
@@ -124,12 +123,11 @@ public class TelaCadastro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrameCadastro.setVisible(false);
-                FrameMenu.setVisible(true);
+                FrameRegistro.setVisible(true);
             }
         });
 
     }
-
 
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
@@ -145,10 +143,10 @@ public class TelaCadastro {
         String cargo = (String) PosComboBoxCadastro.getSelectedItem();
         String horario = (String) TurnComboBoxCadastro.getSelectedItem();
 
-        /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || sexo.isEmpty() || cargo.isEmpty()) {
-                JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return null;
-                }*/
+        /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
+            JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }*/
 
         try {
             if (cpf.length() != 14) {
@@ -159,14 +157,12 @@ public class TelaCadastro {
             return null;
         }
 
-
-
         if (username != null && password != null) {
             User usuario = new User();
             usuario.setUsername(username);
             usuario.setPassword(password);
             usuario.setNome(nome);
-            usuario.setCpf(CpfFieldCadastro.getText());
+            usuario.setCpf(cpf);
             usuario.setEmail(email);
             usuario.setDataNascimento(dataNascimento);
             usuario.setGenero(genero);
