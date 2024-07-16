@@ -1,13 +1,18 @@
 package TelaRegister;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 import Classes.User;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
 public class TelaCadastro {
 
@@ -16,7 +21,7 @@ public class TelaCadastro {
     private JTextField UsernameFieldCadastro;
     private JPasswordField PasswordFieldCadastro;
     private JTextField NameFieldCadastro;
-    private JTextField CpfFieldCadastro;
+    private JFormattedTextField CpfFieldCadastro;
     private JTextField EmailFieldCadastro;
     private JButton CancelButtonCadastro;
     private JButton RegisterButtonCadastro;
@@ -48,6 +53,13 @@ public class TelaCadastro {
         this.FrameMenu = frameMenu;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
         genero = "";
+        try {
+            MaskFormatter cpfFormatter = new MaskFormatter("###.###.###-##");
+            cpfFormatter.install(CpfFieldCadastro);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao formatar", "ERRO", JOptionPane.ERROR);
+        }
+
 
         FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameCadastro.add(PanelCadastro);
@@ -136,6 +148,20 @@ public class TelaCadastro {
         String cargo = (String) PosComboBoxCadastro.getSelectedItem();
         String horario = (String) TurnComboBoxCadastro.getSelectedItem();
 
+        /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || sexo.isEmpty() || cargo.isEmpty()) {
+                JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return null;
+        }*/
+
+        try {
+            if (cpf.length() != 14) {
+                throw new IllegalArgumentException("CPF deve conter exatamente 11 dígitos!");
+            }
+        }catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(FrameCadastro, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
 
 
         if (username != null && password != null) {
@@ -143,7 +169,7 @@ public class TelaCadastro {
             usuario.setUsername(username);
             usuario.setPassword(password);
             usuario.setNome(nome);
-            usuario.setCpf(cpf);
+            usuario.setCpf(CpfFieldCadastro.getText());
             usuario.setEmail(email);
             usuario.setDataNascimento(dataNascimento);
             usuario.setGenero(genero);
