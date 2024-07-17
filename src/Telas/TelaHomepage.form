@@ -90,8 +90,8 @@
         <properties>
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
-          <icon value="img/saida M.png"/>
-          <margin top="0" left="0" bottom="0" right="70"/>
+          <icon value="IMG/saida M.png"/>
+          <margin top="0" left="0" bottom="0" right="50"/>
           <text value=""/>
         </properties>
       </component>
@@ -115,8 +115,8 @@
           <background color="-11908534"/>
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
-          <icon value="img/lupa1.png"/>
-          <margin top="0" left="0" bottom="0" right="70"/>
+          <icon value="IMG/Lupa1.png"/>
+          <margin top="0" left="0" bottom="0" right="50"/>
           <opaque value="false"/>
           <text value=""/>
         </properties>
