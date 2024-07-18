@@ -22,12 +22,12 @@ public class TelaRegistro {
     private JButton ButtonAdminRegistro;
     private JFrame FrameRegistro;
     private ArrayList<User> usuarios;
-    private JFrame FrameMenu;
+    private JFrame FrameHomepage;
 
-    public TelaRegistro(ArrayList<User> usuarios, JFrame frameMenu, User usuarioLogado){
+    public TelaRegistro(ArrayList<User> usuarios, JFrame frameHomepage, User usuarioLogado){
         FrameRegistro = new JFrame("RH Manager - Alpha");
         this.usuarios = usuarios;
-        this.FrameMenu = frameMenu;
+        this.FrameHomepage = frameHomepage;
 
         FrameRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameRegistro.add(PanelRegistro);
@@ -61,7 +61,7 @@ public class TelaRegistro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrameRegistro.setVisible(false);
-                FrameMenu.setVisible(true);
+                FrameHomepage.setVisible(true);
             }
         });
 

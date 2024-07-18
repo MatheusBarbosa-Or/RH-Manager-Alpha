@@ -40,7 +40,7 @@ public class TelaLogin {
                 User usuarioLogado = realizarLogin();
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(FrameLogin, "Login feito com sucesso!\n");
-                    TelaRegistro telaRegistro = new TelaRegistro(usuarios, FrameLogin, usuarioLogado);
+                    TelaHomepage telaHomepage = new TelaHomepage(usuarios, FrameLogin, usuarioLogado);
                     FrameLogin.setVisible(false);
                     limparCampos();
                 } else {
