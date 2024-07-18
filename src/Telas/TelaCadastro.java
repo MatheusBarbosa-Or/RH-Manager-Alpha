@@ -43,13 +43,13 @@ public class TelaCadastro {
     private JComboBox TurnComboBoxCadastro;
 
     private ArrayList<User> usuarios;
-    private JFrame FrameRegistro;
+    private JFrame FrameHomepage;
     private String genero;
 
 
-    public TelaCadastro(ArrayList<User> usuarios, JFrame frameRegistro) {
+    public TelaCadastro(ArrayList<User> usuarios, JFrame frameHomepage) {
         this.usuarios = usuarios;
-        this.FrameRegistro = frameRegistro;
+        this.FrameHomepage = frameHomepage;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
         genero = "";
         try {
@@ -102,7 +102,7 @@ public class TelaCadastro {
                     usuarios.add(novoUsuario);
                     JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                     FrameCadastro.setVisible(false);
-                    FrameRegistro.setVisible(true);
+                    FrameHomepage.setVisible(true);
                 }
             }
         });
@@ -125,7 +125,7 @@ public class TelaCadastro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrameCadastro.setVisible(false);
-                FrameRegistro.setVisible(true);
+                FrameHomepage.setVisible(true);
             }
         });
 
