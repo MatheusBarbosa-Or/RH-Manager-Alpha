@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import Classes.Funcionarios;
 import Classes.User;
 
 public class TelaLogin {
@@ -19,28 +21,38 @@ public class TelaLogin {
     private JLabel PasswordTitle;
     private JLabel MenuTitleLogin;
     private ArrayList<User> usuarios;
+    private ArrayList<Funcionarios> funcionarios;
 
     public TelaLogin() {
 
         FrameLogin = new JFrame("RH Manager - Alpha");
         usuarios = new ArrayList<>();
+        funcionarios = new ArrayList<>();
 
         User Admin = new User();
         Admin.setUsername("Admin");
         Admin.setPassword("Admin");
         Admin.setNome("Admin");
-        Admin.setEmail("Admin@Admin.com");
-        Admin.setGenero("Outros");
         Admin.setCargo("Admin");
         usuarios.add(Admin);
+
+        Funcionarios Teste = new Funcionarios();
+        Teste.setNome("Teste");
+        Teste.setCpf("Teste");
+        Teste.setEmail("Teste");
+        Teste.setDataNascimento("Teste");
+        Teste.setGenero("Masculino");
+        Teste.setHorario("Teste");
+        funcionarios.add(Teste);
 
         ButtonLoginLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 User usuarioLogado = realizarLogin();
+                Funcionarios funcionarioTeste = Teste;
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(FrameLogin, "Login feito com sucesso!\n");
-                    TelaHomepage telaHomepage = new TelaHomepage(usuarios, FrameLogin, usuarioLogado);
+                    TelaHomepage telaHomepage = new TelaHomepage(usuarios,funcionarios, FrameLogin, usuarioLogado, funcionarioTeste);
                     FrameLogin.setVisible(false);
                     limparCampos();
                 } else {

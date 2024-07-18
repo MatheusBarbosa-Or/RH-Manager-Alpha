@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
 import Classes.User;
+import Classes.Funcionarios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +33,7 @@ public class TelaCadastro {
     private JLabel CpfTitleCadastro;
     private JLabel EmailTitleCadastro;
     private JLabel DobTitleCadastro;
-    private JLabel SexTitleCadastro;
+    private JLabel GeneroTitleCadastro;
     private JLabel PosTitleCadastro;
     private JLabel TurnTitleCadastro;
     private JComboBox DayComboBoxCadastro;
@@ -43,26 +44,45 @@ public class TelaCadastro {
     private JComboBox TurnComboBoxCadastro;
 
     private ArrayList<User> usuarios;
+    private ArrayList<Funcionarios> funcionarios;
     private JFrame FrameHomepage;
     private String genero;
+    private int novoUsuario_Funcionario;
 
 
-    public TelaCadastro(ArrayList<User> usuarios, JFrame frameHomepage) {
+    public TelaCadastro(ArrayList<User> usuarios, ArrayList<Funcionarios> funcionarios,JFrame frameHomepage, int novoUsuario_Funcionario) {
         this.usuarios = usuarios;
+        this.funcionarios = funcionarios;
         this.FrameHomepage = frameHomepage;
+        this.novoUsuario_Funcionario = novoUsuario_Funcionario;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
         genero = "";
+
+        FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameCadastro.add(PanelCadastro);
+        FrameCadastro.pack();
+        FrameCadastro.setVisible(true);
+
+        if (novoUsuario_Funcionario == 1){
+            EmailTitleCadastro.setVisible(false); GeneroTitleCadastro.setVisible(false);
+            EmailFieldCadastro.setVisible(false); GeneroComboBoxCadastro.setVisible(false);
+            DobTitleCadastro.setVisible(false); TurnTitleCadastro.setVisible(false);
+            DayComboBoxCadastro.setVisible(false); TurnComboBoxCadastro.setVisible(false);
+            MonthComboBoxCadastro.setVisible(false);
+            YearComboBoxCadastro.setVisible(false);
+        } else if (novoUsuario_Funcionario == 2) {
+            UsernameTitleCadastro.setVisible(false);
+            UsernameFieldCadastro.setVisible(false);
+            PasswordTitleCadastro.setVisible(false);
+            PasswordFieldCadastro.setVisible(false);
+        }
+
         try {
             MaskFormatter cpfFormatter = new MaskFormatter("###.###.###-##");
             cpfFormatter.install(CpfFieldCadastro);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao formatar", "ERRO", JOptionPane.ERROR);
         }
-
-        FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        FrameCadastro.add(PanelCadastro);
-        FrameCadastro.pack();
-        FrameCadastro.setVisible(true);
 
         //ComboBox Data de Nascimento
         if (DayComboBoxCadastro.getItemCount() == 0) {
@@ -85,27 +105,13 @@ public class TelaCadastro {
         }
 
         //BoxCargo
-
         PosComboBoxCadastro.addItem("");
         PosComboBoxCadastro.addItem("Gerente de Projetos"); PosComboBoxCadastro.addItem("Engenheiro de Software");
         PosComboBoxCadastro.addItem("Desenvolvedor Senior"); PosComboBoxCadastro.addItem("Desenvolvedor Pleno");
         PosComboBoxCadastro.addItem("Desenvolvedor Junior"); PosComboBoxCadastro.addItem("Estagiario de Ti");
         PosComboBoxCadastro.addItem("Gerente Administrativo"); PosComboBoxCadastro.addItem("Auxiliar Administrativo");
         PosComboBoxCadastro.addItem("Advogado Chefe"); PosComboBoxCadastro.addItem("Auxiliar Juridico");
-        PosComboBoxCadastro.addItem("Estagiario Juridico");
-
-        RegisterButtonCadastro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                User novoUsuario = cadastrarUsuario();
-                if (novoUsuario != null) {
-                    usuarios.add(novoUsuario);
-                    JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
-                    FrameCadastro.setVisible(false);
-                    FrameHomepage.setVisible(true);
-                }
-            }
-        });
+        PosComboBoxCadastro.addItem("Estagiario Juridico"); PosComboBoxCadastro.addItem("Admin");
 
         //ComboBox Genero
         GeneroComboBoxCadastro.addItem("");
@@ -114,12 +120,32 @@ public class TelaCadastro {
         GeneroComboBoxCadastro.addItem("Outros");
 
         //ComboBox Horarios
-
         TurnComboBoxCadastro.addItem("");
         TurnComboBoxCadastro.addItem("7:00 - 14:00");
         TurnComboBoxCadastro.addItem("14:00 - 21:00");
         TurnComboBoxCadastro.addItem("10:00 - 14:00");
         TurnComboBoxCadastro.addItem("14:00 - 18:00");
+
+        RegisterButtonCadastro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(novoUsuario_Funcionario == 1){
+                    User novoUsuario = cadastrarUsuario();
+                    if (novoUsuario != null) {
+                        usuarios.add(novoUsuario);
+                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
+                        FrameCadastro.setVisible(false);
+                        FrameHomepage.setVisible(true);
+                    }
+                }else if (novoUsuario_Funcionario == 2) {
+                    Funcionarios novoFuncionario = cadastrarFuncionario();
+                    funcionarios.add(novoFuncionario);
+                    JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
+                    FrameCadastro.setVisible(false);
+                    FrameHomepage.setVisible(true);
+                }
+            }
+        });
 
         CancelButtonCadastro.addActionListener(new ActionListener() {
             @Override
@@ -130,6 +156,8 @@ public class TelaCadastro {
         });
 
     }
+
+
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@.{5,}\\.com$";
         Pattern pattern = Pattern.compile(emailRegex);
@@ -140,6 +168,37 @@ public class TelaCadastro {
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
         String password = new String(PasswordFieldCadastro.getPassword());
+        String nome = NameFieldCadastro.getText();
+        String cpf = CpfFieldCadastro.getText();
+        String cargo = (String) PosComboBoxCadastro.getSelectedItem();
+
+        if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || cargo.isEmpty()) {
+            JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        try {
+            if (cpf.length() != 14) {
+                throw new IllegalArgumentException("CPF deve conter exatamente 11 dígitos!");
+            }
+        }catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(FrameCadastro, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        if (username != null && password != null) {
+            User usuario = new User();
+            usuario.setUsername(username);
+            usuario.setPassword(password);
+            usuario.setNome(nome);
+            usuario.setCpf(cpf);
+            usuario.setCargo(cargo);
+            return usuario;
+        }
+        return null;
+    }
+
+    private Funcionarios cadastrarFuncionario() {
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
@@ -157,10 +216,10 @@ public class TelaCadastro {
             return null;
         }
 
-        /*if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
+        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
             JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
-        }*/
+        }
 
         try {
             if (cpf.length() != 14) {
@@ -171,18 +230,17 @@ public class TelaCadastro {
             return null;
         }
 
-        if (username != null && password != null) {
-            User usuario = new User();
-            usuario.setUsername(username);
-            usuario.setPassword(password);
-            usuario.setNome(nome);
-            usuario.setCpf(cpf);
-            usuario.setEmail(email);
-            usuario.setDataNascimento(dataNascimento);
-            usuario.setGenero(genero);
-            usuario.setCargo(cargo);
-            usuario.setHorario(horario);
-            return usuario;
+        if (nome != null && cpf != null && email != null && dataNascimento != null && genero != null && cargo != null && horario != null) {
+            Funcionarios funcionario = new Funcionarios();
+
+            funcionario.setNome(nome);
+            funcionario.setCpf(cpf);
+            funcionario.setEmail(email);
+            funcionario.setDataNascimento(dataNascimento);
+            funcionario.setGenero(genero);
+            funcionario.setCargo(cargo);
+            funcionario.setHorario(horario);
+            return funcionario;
         }
         return null;
     }
