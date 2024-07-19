@@ -1,6 +1,7 @@
 package Telas;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class TelaHomepage {
     private JPanel PanelHomepage;
     private JButton ButtonNewUserHomepage;
     private JButton ButtonNewFunHomepage;
+    private JLabel NomeTeste;
+    private JLabel CargoTeste;
+    private JLabel HorarioTeste;
     private JFrame FrameHomepage;
 
     private ArrayList<User> usuarios;
@@ -48,12 +52,13 @@ public class TelaHomepage {
             ButtonNewFunHomepage.setVisible(false);
         }
 
+        configurarTabela();
 
         ButtonNewUserHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 1;
-                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario);
+                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -62,7 +67,7 @@ public class TelaHomepage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 2;
-                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario);
+                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -83,6 +88,14 @@ public class TelaHomepage {
             }
         });
 
+    }
+
+    private void configurarTabela() {
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Horário"}, 0);
+        for (Funcionarios func : funcionarios) {
+            model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario()});
+        }
+        TableFunHomepage.setModel(model);
     }
 
 }

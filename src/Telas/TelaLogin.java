@@ -42,6 +42,7 @@ public class TelaLogin {
         Teste.setEmail("Teste");
         Teste.setDataNascimento("Teste");
         Teste.setGenero("Masculino");
+        Teste.setCargo("Teste");
         Teste.setHorario("Teste");
         funcionarios.add(Teste);
 

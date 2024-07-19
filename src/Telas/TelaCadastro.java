@@ -50,7 +50,7 @@ public class TelaCadastro {
     private int novoUsuario_Funcionario;
 
 
-    public TelaCadastro(ArrayList<User> usuarios, ArrayList<Funcionarios> funcionarios,JFrame frameHomepage, int novoUsuario_Funcionario) {
+    public TelaCadastro(ArrayList<User> usuarios, ArrayList<Funcionarios> funcionarios,JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
         this.usuarios = usuarios;
         this.funcionarios = funcionarios;
         this.FrameHomepage = frameHomepage;
@@ -144,6 +144,7 @@ public class TelaCadastro {
                     JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                     FrameCadastro.setVisible(false);
                     FrameHomepage.setVisible(true);
+                    onSave.run();
                 }
             }
         });
@@ -157,7 +158,6 @@ public class TelaCadastro {
         });
 
     }
-
 
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@.{5,}\\.com$";

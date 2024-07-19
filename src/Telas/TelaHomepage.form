@@ -40,15 +40,21 @@
           </grid>
         </constraints>
         <properties>
-          <autoCreateColumnsFromModel value="false"/>
+          <autoCreateColumnsFromModel value="true"/>
           <autoCreateRowSorter value="true"/>
           <background color="-11908534"/>
-          <cellSelectionEnabled value="false"/>
+          <cellSelectionEnabled value="true"/>
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
-          <name value="Funcionarios"/>
+          <gridColor color="-1"/>
+          <name value=""/>
+          <rowHeight value="25"/>
           <rowSelectionAllowed value="true"/>
         </properties>
+        <clientProperties>
+          <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
+          <Table.isFileList class="java.lang.Boolean" value="false"/>
+        </clientProperties>
       </component>
       <component id="5ee5a" class="javax.swing.JButton" binding="ButtonDesHomepage">
         <constraints>
