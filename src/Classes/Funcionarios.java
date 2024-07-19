@@ -10,7 +10,6 @@ public class Funcionarios {
     private String horario;
 
     // Getters and setters
-
     public String getNome() {
         return nome;
     }
@@ -66,5 +65,4 @@ public class Funcionarios {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-
 }

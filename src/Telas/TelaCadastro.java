@@ -26,7 +26,7 @@ public class TelaCadastro {
     private JButton CancelButtonCadastro;
     private JButton RegisterButtonCadastro;
     private JLabel IconCadastro;
-    private JLabel CadastroTitle;
+    private JLabel TitleCadastro;
     private JLabel UsernameTitleCadastro;
     private JLabel PasswordTitleCadastro;
     private JLabel NameTitleCadastro;
@@ -71,6 +71,7 @@ public class TelaCadastro {
             MonthComboBoxCadastro.setVisible(false);
             YearComboBoxCadastro.setVisible(false);
         } else if (novoUsuario_Funcionario == 2) {
+            TitleCadastro.setText("Cadastro de Funcionario");
             UsernameTitleCadastro.setVisible(false);
             UsernameFieldCadastro.setVisible(false);
             PasswordTitleCadastro.setVisible(false);
