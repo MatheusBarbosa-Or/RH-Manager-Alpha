@@ -3,7 +3,12 @@ package Telas;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import Classes.Funcionarios;
 import Classes.User;
@@ -68,16 +73,47 @@ public class TelaLogin {
         FrameLogin.setVisible(true);
     }
 
+    private Connection connect() {
+
+        String url = "jdbc:sqlite:DataBase/RH_Manager_DB.db"; // Coloque o caminho do seu banco de dados aqui
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
+
+    }
+
     private User realizarLogin() {
         String username = UsernameFieldLogin.getText();
         String password = new String(PasswordFieldLogin.getPassword());
+        String sql = "SELECT * FROM Usuarios WHERE username = ? AND password = ?";
 
-        for (User usuario : usuarios) {
-            if (username.equals(usuario.getUsername()) && password.equals(usuario.getPassword())) {
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // Set the values
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            // Loop through the result set
+            if (rs.next()) {
+                User usuario = new User();
+                usuario.setUsername(rs.getString("username"));
+                usuario.setPassword(rs.getString("password"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setCargo(rs.getString("cargo"));
                 return usuario;
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         return null;
+
     }
 
     public void limparCampos() {
