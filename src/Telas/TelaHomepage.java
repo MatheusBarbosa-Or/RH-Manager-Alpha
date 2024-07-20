@@ -5,9 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import Classes.Funcionarios;
 import Classes.User;
+import Database.DbConnection;
 
 public class TelaHomepage {
     private JTextField FieldPesquisaHomepage;
@@ -91,6 +93,9 @@ public class TelaHomepage {
     }
 
     private void configurarTabela() {
+        DbConnection BuscarFunc = new DbConnection();
+        List<Funcionarios> funcionarios = BuscarFunc.buscarTodosFuncionarios();
+
         DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Horário"}, 0);
         for (Funcionarios func : funcionarios) {
             model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario()});

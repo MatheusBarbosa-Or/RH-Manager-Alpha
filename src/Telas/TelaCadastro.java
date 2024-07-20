@@ -5,6 +5,7 @@ import javax.swing.text.MaskFormatter;
 
 import Classes.User;
 import Classes.Funcionarios;
+import Database.DbConnection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -133,6 +134,7 @@ public class TelaCadastro {
                 if(novoUsuario_Funcionario == 1){
                     User novoUsuario = cadastrarUsuario();
                     if (novoUsuario != null) {
+                        DbConnection.inserirUsuario(novoUsuario);
                         usuarios.add(novoUsuario);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
@@ -140,11 +142,15 @@ public class TelaCadastro {
                     }
                 }else if (novoUsuario_Funcionario == 2) {
                     Funcionarios novoFuncionario = cadastrarFuncionario();
-                    funcionarios.add(novoFuncionario);
-                    JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
-                    FrameCadastro.setVisible(false);
-                    FrameHomepage.setVisible(true);
-                    onSave.run();
+                    if (novoFuncionario != null){
+                        DbConnection.inserirFuncionario(novoFuncionario);
+                        funcionarios.add(novoFuncionario);
+                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
+                        FrameCadastro.setVisible(false);
+                        FrameHomepage.setVisible(true);
+                        onSave.run();
+                    }
+
                 }
             }
         });
