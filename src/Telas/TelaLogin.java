@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -25,40 +24,19 @@ public class TelaLogin {
     private JLabel UsernameTitleLogin;
     private JLabel PasswordTitle;
     private JLabel MenuTitleLogin;
-    private ArrayList<User> usuarios;
-    private ArrayList<Funcionarios> funcionarios;
+    private JLabel DbConnectionIcon;
 
     public TelaLogin() {
 
         FrameLogin = new JFrame("RH Manager - Alpha");
-        usuarios = new ArrayList<>();
-        funcionarios = new ArrayList<>();
-
-        User Admin = new User();
-        Admin.setUsername("Admin");
-        Admin.setPassword("Admin");
-        Admin.setNome("Admin");
-        Admin.setCargo("Admin");
-        usuarios.add(Admin);
-
-        Funcionarios Teste = new Funcionarios();
-        Teste.setNome("Teste");
-        Teste.setCpf("Teste");
-        Teste.setEmail("Teste");
-        Teste.setDataNascimento("Teste");
-        Teste.setGenero("Masculino");
-        Teste.setCargo("Teste");
-        Teste.setHorario("Teste");
-        funcionarios.add(Teste);
 
         ButtonLoginLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 User usuarioLogado = realizarLogin();
-                Funcionarios funcionarioTeste = Teste;
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(FrameLogin, "Login feito com sucesso!\n");
-                    TelaHomepage telaHomepage = new TelaHomepage(usuarios,funcionarios, FrameLogin, usuarioLogado, funcionarioTeste);
+                    TelaHomepage telaHomepage = new TelaHomepage(FrameLogin, usuarioLogado);
                     FrameLogin.setVisible(false);
                     limparCampos();
                 } else {
@@ -79,8 +57,10 @@ public class TelaLogin {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
+            DbConnectionIcon.setIcon(new ImageIcon(getClass().getResource("/IMG/DbOn.png")));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            DbConnectionIcon.setIcon(new ImageIcon(getClass().getResource("/IMG/DbOff.png")));
         }
         return conn;
 

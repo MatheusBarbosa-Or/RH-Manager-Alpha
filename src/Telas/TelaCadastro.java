@@ -5,12 +5,11 @@ import javax.swing.text.MaskFormatter;
 
 import Classes.User;
 import Classes.Funcionarios;
-import Database.DbConnection;
+import DbConnect.DbConnection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,16 +43,12 @@ public class TelaCadastro {
     private JComboBox PosComboBoxCadastro;
     private JComboBox TurnComboBoxCadastro;
 
-    private ArrayList<User> usuarios;
-    private ArrayList<Funcionarios> funcionarios;
     private JFrame FrameHomepage;
     private String genero;
     private int novoUsuario_Funcionario;
 
 
-    public TelaCadastro(ArrayList<User> usuarios, ArrayList<Funcionarios> funcionarios,JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
-        this.usuarios = usuarios;
-        this.funcionarios = funcionarios;
+    public TelaCadastro(JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
         this.FrameHomepage = frameHomepage;
         this.novoUsuario_Funcionario = novoUsuario_Funcionario;
         FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
@@ -135,7 +130,6 @@ public class TelaCadastro {
                     User novoUsuario = cadastrarUsuario();
                     if (novoUsuario != null) {
                         DbConnection.inserirUsuario(novoUsuario);
-                        usuarios.add(novoUsuario);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
                         FrameHomepage.setVisible(true);
@@ -144,7 +138,6 @@ public class TelaCadastro {
                     Funcionarios novoFuncionario = cadastrarFuncionario();
                     if (novoFuncionario != null){
                         DbConnection.inserirFuncionario(novoFuncionario);
-                        funcionarios.add(novoFuncionario);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
                         FrameHomepage.setVisible(true);

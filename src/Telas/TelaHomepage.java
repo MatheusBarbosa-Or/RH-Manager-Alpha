@@ -4,12 +4,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import Classes.Funcionarios;
 import Classes.User;
-import Database.DbConnection;
+import DbConnect.DbConnection;
 
 public class TelaHomepage {
     private JTextField FieldPesquisaHomepage;
@@ -27,14 +26,10 @@ public class TelaHomepage {
     private JLabel HorarioTeste;
     private JFrame FrameHomepage;
 
-    private ArrayList<User> usuarios;
-    private ArrayList<Funcionarios> funcionarios;
     private JFrame FrameLogin;
     private int novoUsuario_Funcionario;
 
-    public TelaHomepage(ArrayList<User> usuarios, ArrayList<Funcionarios> funcionarios, JFrame frameLogin, User usuarioLogado, Funcionarios funcionarioTeste){
-        this.usuarios = usuarios;
-        this.funcionarios = funcionarios;
+    public TelaHomepage(JFrame frameLogin, User usuarioLogado){
         this.FrameLogin = frameLogin;
         FrameHomepage = new JFrame("RH Manager - Alpha");
 
@@ -60,7 +55,7 @@ public class TelaHomepage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 1;
-                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
+                TelaCadastro telaCadastro = new TelaCadastro(FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -69,7 +64,7 @@ public class TelaHomepage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 2;
-                TelaCadastro telaCadastro = new TelaCadastro(usuarios, funcionarios,FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
+                TelaCadastro telaCadastro = new TelaCadastro(FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -77,7 +72,7 @@ public class TelaHomepage {
         ButtonFichaHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TelaRegistro telaRegistro = new TelaRegistro(usuarios, funcionarios,FrameHomepage, usuarioLogado, funcionarioTeste);
+                TelaRegistro telaRegistro = new TelaRegistro(FrameHomepage, usuarioLogado);
                 FrameHomepage.setVisible(false);
             }
         });

@@ -44,12 +44,14 @@
           <autoCreateRowSorter value="true"/>
           <background color="-11908534"/>
           <cellSelectionEnabled value="true"/>
+          <enabled value="false"/>
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <gridColor color="-1"/>
           <name value=""/>
           <rowHeight value="25"/>
           <rowSelectionAllowed value="true"/>
+          <verifyInputWhenFocusTarget value="false"/>
         </properties>
         <clientProperties>
           <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
