@@ -2,15 +2,19 @@ package Telas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.*;
 import java.util.List;
 
 import Classes.Funcionarios;
 import Classes.User;
 import DbConnect.DbConnection;
 
-public class TelaHomepage {
+public class TelaHomepage extends Component {
     private JTextField FieldPesquisaHomepage;
     private JTable TableFunHomepage;
     private JButton ButtonPesquisaHomepage;
@@ -21,6 +25,7 @@ public class TelaHomepage {
     private JPanel PanelHomepage;
     private JButton ButtonNewUserHomepage;
     private JButton ButtonNewFunHomepage;
+    private JScrollPane ScrollPaneTableHomepage;
     private JLabel NomeTeste;
     private JLabel CargoTeste;
     private JLabel HorarioTeste;
@@ -32,7 +37,6 @@ public class TelaHomepage {
     public TelaHomepage(JFrame frameLogin, User usuarioLogado){
         this.FrameLogin = frameLogin;
         FrameHomepage = new JFrame("RH Manager - Alpha");
-
 
         FrameHomepage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameHomepage.add(PanelHomepage);
@@ -72,8 +76,19 @@ public class TelaHomepage {
         ButtonFichaHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TelaRegistro telaRegistro = new TelaRegistro(FrameHomepage, usuarioLogado);
-                FrameHomepage.setVisible(false);
+                Integer FuncSelect = TableFunHomepage.getSelectedRow();
+                if(FuncSelect != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                    Funcionarios funcionario = InfoFuncionario(id);
+                    if (funcionario != null) {
+                        TelaRegistro telaRegistro = new TelaRegistro(FrameHomepage, funcionario);
+                        FrameHomepage.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(FrameHomepage, "Nenhum funcionário selecionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
 
@@ -84,18 +99,59 @@ public class TelaHomepage {
                 FrameLogin.setVisible(true);
             }
         });
-
     }
 
     private void configurarTabela() {
         DbConnection BuscarFunc = new DbConnection();
         List<Funcionarios> funcionarios = BuscarFunc.buscarTodosFuncionarios();
 
-        DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Horário"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Horário", "ID"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas as células não são editáveis
+            }
+        };
+        TableFunHomepage.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         for (Funcionarios func : funcionarios) {
-            model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario()});
+            model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario(), func.getFuncionarioId()});
         }
         TableFunHomepage.setModel(model);
     }
 
+    private Funcionarios InfoFuncionario(int id){
+        try(Connection conn = DbConnection.getConnection()) {
+            String sql = "SELECT Nome, CPF, DataNascimento, Email, Genero, Cargo, Horario, Id FROM Funcionarios WHERE Id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Funcionarios funcSelected = new Funcionarios();
+
+                String nome = rs.getString("Nome");
+                String cpf = rs.getString("CPF");
+                String dataNascimento = rs.getString("DataNascimento");
+                String email = rs.getString("Email");
+                String genero = rs.getString("Genero");
+                String cargo = rs.getString("Cargo");
+                String horario = rs.getString("Horario");
+                int funcionarioId = rs.getInt("Id");
+
+                funcSelected.setNome(nome);
+                funcSelected.setCpf(cpf);
+                funcSelected.setDataNascimento(dataNascimento);
+                funcSelected.setEmail(email);
+                funcSelected.setGenero(genero);
+                funcSelected.setCargo(cargo);
+                funcSelected.setHorario(horario);
+                funcSelected.setFuncionarioId(funcionarioId);
+
+                return funcSelected;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

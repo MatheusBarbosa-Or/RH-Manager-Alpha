@@ -165,6 +165,26 @@ public class TelaCadastro {
         return matcher.matches();
     }
 
+    private int gerarId(String cargo, String cpf) {
+        String prefixo = "";
+        if (cargo.equals("Gerente de Projetos") || cargo.equals("Engenheiro de Software") ||
+                cargo.equals("Desenvolvedor Senior") || cargo.equals("Desenvolvedor Pleno") ||
+                cargo.equals("Desenvolvedor Junior") || cargo.equals("Estagiario de Ti")) {
+            prefixo = "987";
+        } else if (cargo.equals("Gerente Administrativo") || cargo.equals("Auxiliar Administrativo")) {
+            prefixo = "789";
+        } else if (cargo.equals("Advogado Chefe") || cargo.equals("Auxiliar Juridico") ||
+                cargo.equals("Estagiario Juridico")) {
+            prefixo = "897";
+        }
+
+        String cpfDigitos = cpf.replaceAll("\\D", ""); // Remove non-digit characters
+        String suffixo = cpfDigitos.substring(0, 3); // First three digits of the CPF
+
+        String idStr = prefixo + suffixo;
+        return Integer.parseInt(idStr);
+    }
+
     private User cadastrarUsuario() {
         String username = UsernameFieldCadastro.getText();
         String password = new String(PasswordFieldCadastro.getPassword());
@@ -193,6 +213,7 @@ public class TelaCadastro {
             usuario.setNome(nome);
             usuario.setCpf(cpf);
             usuario.setCargo(cargo);
+            usuario.setUsuarioid(gerarId(cargo, cpf));
             return usuario;
         }
         return null;
@@ -240,6 +261,7 @@ public class TelaCadastro {
             funcionario.setGenero(genero);
             funcionario.setCargo(cargo);
             funcionario.setHorario(horario);
+            funcionario.setFuncionarioId(gerarId(cargo,cpf));
             return funcionario;
         }
         return null;

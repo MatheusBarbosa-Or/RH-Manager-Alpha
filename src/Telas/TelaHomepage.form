@@ -33,31 +33,6 @@
           <text value="Novo funcionario"/>
         </properties>
       </component>
-      <component id="6cfb8" class="javax.swing.JTable" binding="TableFunHomepage">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <autoCreateColumnsFromModel value="true"/>
-          <autoCreateRowSorter value="true"/>
-          <background color="-11908534"/>
-          <cellSelectionEnabled value="true"/>
-          <enabled value="false"/>
-          <font name="Consolas" size="16" style="1"/>
-          <foreground color="-1"/>
-          <gridColor color="-1"/>
-          <name value=""/>
-          <rowHeight value="25"/>
-          <rowSelectionAllowed value="true"/>
-          <verifyInputWhenFocusTarget value="false"/>
-        </properties>
-        <clientProperties>
-          <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
-          <Table.isFileList class="java.lang.Boolean" value="false"/>
-        </clientProperties>
-      </component>
       <component id="5ee5a" class="javax.swing.JButton" binding="ButtonDesHomepage">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -129,6 +104,45 @@
           <text value=""/>
         </properties>
       </component>
+      <scrollpane id="4226e" binding="ScrollPaneTableHomepage">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11908534"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+        </properties>
+        <border type="bevel-lowered" title="Funcionarios" title-justification="2" title-position="1">
+          <font name="Consolas" size="16" style="1"/>
+          <title-color color="-1"/>
+        </border>
+        <children>
+          <component id="6cfb8" class="javax.swing.JTable" binding="TableFunHomepage">
+            <constraints/>
+            <properties>
+              <autoCreateColumnsFromModel value="true"/>
+              <autoCreateRowSorter value="true"/>
+              <background color="-11908534"/>
+              <cellSelectionEnabled value="true"/>
+              <enabled value="true"/>
+              <font name="Consolas" size="16" style="1"/>
+              <foreground color="-1"/>
+              <gridColor color="-1"/>
+              <name value=""/>
+              <rowHeight value="25"/>
+              <rowMargin value="1"/>
+              <rowSelectionAllowed value="true"/>
+              <verifyInputWhenFocusTarget value="false"/>
+            </properties>
+            <clientProperties>
+              <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
+              <Table.isFileList class="java.lang.Boolean" value="false"/>
+            </clientProperties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

@@ -33,8 +33,12 @@ public class DbConnection {
         return conn;
     }
 
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL);
+    }
+
     public static void inserirUsuario(User user) {
-        String sql = "INSERT INTO Usuarios(Username, Password, Nome, CPF, Cargo) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuarios(Username, Password, Nome, CPF, Cargo, Id) VALUES(?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -43,6 +47,7 @@ public class DbConnection {
             pstmt.setString(3, user.getNome());
             pstmt.setString(4, user.getCpf());
             pstmt.setString(5, user.getCargo());
+            pstmt.setInt(6, user.getUsuarioid());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -50,7 +55,7 @@ public class DbConnection {
     }
 
     public static void inserirFuncionario(Funcionarios funcionario) {
-        String sql = "INSERT INTO Funcionarios(Nome, CPF, Email, DataNascimento, Genero, Cargo, Horario) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Funcionarios(Nome, CPF, Email, DataNascimento, Genero, Cargo, Horario, Id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -61,6 +66,7 @@ public class DbConnection {
             pstmt.setString(5, funcionario.getGenero());
             pstmt.setString(6, funcionario.getCargo());
             pstmt.setString(7, funcionario.getHorario());
+            pstmt.setInt(8, funcionario.getFuncionarioId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -84,6 +90,7 @@ public class DbConnection {
                 funcionario.setGenero(rs.getString("Genero"));
                 funcionario.setCargo(rs.getString("Cargo"));
                 funcionario.setHorario(rs.getString("Horario"));
+                funcionario.setFuncionarioId(rs.getInt("Id"));
                 funcionarios.add(funcionario);
             }
         } catch (SQLException e) {

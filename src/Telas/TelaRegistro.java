@@ -24,7 +24,7 @@ public class TelaRegistro {
     private JFrame FrameRegistro;
     private JFrame FrameHomepage;
 
-    public TelaRegistro(JFrame frameHomepage, User usuarioLogado){
+    public TelaRegistro(JFrame frameHomepage, Funcionarios funcionario){
         FrameRegistro = new JFrame("RH Manager - Alpha");
         this.FrameHomepage = frameHomepage;
 
@@ -33,21 +33,21 @@ public class TelaRegistro {
         FrameRegistro.pack();
         FrameRegistro.setVisible(true);
 
-        /* if (funcionarioTeste.getGenero().equals("Feminino")){
+        if (funcionario.getGenero().equals("Feminino")){
             ProfileRegistro.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
-        } else if (funcionarioTeste.getGenero().equals("Masculino")) {
+        } else if (funcionario.getGenero().equals("Masculino")) {
             ProfileRegistro.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
-        } else if (funcionarioTeste.getGenero().equals("Outros")) {
+        } else if (funcionario.getGenero().equals("Outros")) {
             ProfileRegistro.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
         }
 
-        /* NameTitleRegistro.setText("Nome: " + funcionarioTeste.getNome());
-        CpfTitleRegistro.setText("CPF: " + funcionarioTeste.getCpf());
-        DobTitleRegistro.setText("Data de Nascimento: " + funcionarioTeste.getDataNascimento());
-        EmailTitleRegistro.setText("Email: " + funcionarioTeste.getEmail());
-        GeneroTitleRegistro.setText("Genero: " + funcionarioTeste.getGenero());
-        PosTitleRegistro.setText("Cargo: " + funcionarioTeste.getCargo());
-        TurnTitleRegistro.setText("Horario: " + funcionarioTeste.getHorario()); */
+        NameTitleRegistro.setText("Nome: " + funcionario.getNome());
+        CpfTitleRegistro.setText("CPF: " + funcionario.getCpf());
+        DobTitleRegistro.setText("Data de Nascimento: " + funcionario.getDataNascimento());
+        EmailTitleRegistro.setText("Email: " + funcionario.getEmail());
+        GeneroTitleRegistro.setText("Genero: " + funcionario.getGenero());
+        PosTitleRegistro.setText("Cargo: " + funcionario.getCargo());
+        TurnTitleRegistro.setText("Horario: " + funcionario.getHorario());
 
 
         ButtonSaidaRegistro.addActionListener(new ActionListener() {

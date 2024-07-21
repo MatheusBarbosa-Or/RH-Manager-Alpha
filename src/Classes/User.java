@@ -6,6 +6,7 @@ public class User {
     private String nome;
     private String cpf;
     private String cargo;
+    private Integer Usuarioid;
 
     // Getters and setters
     public String getUsername() {
@@ -48,6 +49,14 @@ public class User {
         this.cargo = cargo;
     }
 
+    public Integer getUsuarioid() {
+        return Usuarioid;
+    }
+
+    public void setUsuarioid(Integer usuarioid) {
+        this.Usuarioid = usuarioid;
+    }
+
     public void identify(){
         System.out.println("Nome: " + this.nome);
         System.out.println("CPF: " + this.cpf);
@@ -58,4 +67,5 @@ public class User {
     public String toString() {
         return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nCargo: " + this.cargo;
     }
+
 }
