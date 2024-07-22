@@ -1,6 +1,7 @@
 package Telas;
 
 import Classes.Funcionarios;
+import DbConnect.DbConnection;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,7 @@ public class TelaDesligamento {
     private JFrame FrameDesligamento;
     private Funcionarios funcionario;
 
-    public TelaDesligamento(JFrame frameHomepage, Funcionarios funcionario){
+    public TelaDesligamento(JFrame frameHomepage, Funcionarios funcionario, Runnable onSave){
         this.FrameHomepage = frameHomepage;
         this.funcionario = funcionario;
 
@@ -55,6 +56,17 @@ public class TelaDesligamento {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                DbConnection.desligarFuncionario(funcionario);
+                if (funcionario != null) {
+                    JOptionPane.showMessageDialog(FrameDesligamento, " Funcionario desligado com sucesso!\n");
+                    FrameDesligamento.setVisible(false);
+                    FrameHomepage.setVisible(true);
+                    onSave.run();
+                } else {
+                    JOptionPane.showMessageDialog(FrameDesligamento, "Nome de usuario ou senha inválida!");
+                    FrameDesligamento.setVisible(false);
+                    FrameHomepage.setVisible(true);
+                }
             }
         });
     }

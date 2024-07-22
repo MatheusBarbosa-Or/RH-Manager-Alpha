@@ -106,7 +106,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
                     Funcionarios funcionario = InfoFuncionario(id);
                     if (funcionario != null) {
-                        TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario);
+                        TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario, () -> configurarTabela());
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
