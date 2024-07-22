@@ -5,8 +5,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class TelaHomepage extends Component {
     private JButton ButtonPesquisaHomepage;
     private JButton ButtonFichaHomepage;
     private JButton ButtonRelatorioHomepage;
-    private JButton ButtonDesHomepage;
+    private JButton ButtonDeslHomepage;
     private JButton ButtonSaidaHomepage;
     private JPanel PanelHomepage;
     private JButton ButtonNewUserHomepage;
@@ -44,11 +42,11 @@ public class TelaHomepage extends Component {
         FrameHomepage.setVisible(true);
 
         if(usuarioLogado.getCargo().equals("Admin")){
-            ButtonDesHomepage.setVisible(true);
+            ButtonDeslHomepage.setVisible(true);
             ButtonNewUserHomepage.setVisible(true);
             ButtonNewFunHomepage.setVisible(true);
         }else{
-            ButtonDesHomepage.setVisible(false);
+            ButtonDeslHomepage.setVisible(false);
             ButtonNewUserHomepage.setVisible(false);
             ButtonNewFunHomepage.setVisible(false);
         }
@@ -97,6 +95,26 @@ public class TelaHomepage extends Component {
             public void actionPerformed(ActionEvent e) {
                 FrameHomepage.setVisible(false);
                 FrameLogin.setVisible(true);
+            }
+        });
+
+        ButtonDeslHomepage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer FuncSelect = TableFunHomepage.getSelectedRow();
+                if(FuncSelect != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                    Funcionarios funcionario = InfoFuncionario(id);
+                    if (funcionario != null) {
+                        TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario);
+                        FrameHomepage.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(FrameHomepage, "Nenhum funcionário selecionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+
             }
         });
     }

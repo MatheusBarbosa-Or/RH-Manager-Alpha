@@ -176,6 +176,8 @@ public class TelaCadastro {
         } else if (cargo.equals("Advogado Chefe") || cargo.equals("Auxiliar Juridico") ||
                 cargo.equals("Estagiario Juridico")) {
             prefixo = "897";
+        } else if (cargo.equals("Admin")) {
+            prefixo = "001";
         }
 
         String cpfDigitos = cpf.replaceAll("\\D", ""); // Remove non-digit characters

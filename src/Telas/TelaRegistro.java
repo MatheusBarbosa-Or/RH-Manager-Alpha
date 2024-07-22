@@ -50,6 +50,7 @@ public class TelaRegistro {
         TurnTitleRegistro.setText("Horario: " + funcionario.getHorario());
 
 
+
         ButtonSaidaRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
