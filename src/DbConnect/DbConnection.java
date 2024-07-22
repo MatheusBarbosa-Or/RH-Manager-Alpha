@@ -99,4 +99,17 @@ public class DbConnection {
 
         return funcionarios;
     }
+
+    public static void desligarFuncionario(Funcionarios funcionario) {
+        String sql = "DELETE FROM Funcionarios WHERE Id = (?)";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, funcionario.getFuncionarioId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
