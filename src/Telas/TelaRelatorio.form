@@ -31,23 +31,15 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="229f7" class="javax.swing.JLabel" binding="ObsTitleRelatorio">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Consolas" size="16" style="1"/>
-          <foreground color="-1"/>
-          <text value="Observações"/>
-        </properties>
-      </component>
       <component id="126cd" class="javax.swing.JTextArea" binding="ObsTextAreaRelatorio">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="7" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Consolas" size="16" style="1"/>
+        </properties>
       </component>
       <component id="5e6ed" class="javax.swing.JLabel" binding="InfoTitleRelatorio">
         <constraints>
@@ -57,27 +49,6 @@
           <font name="Consolas" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Informações"/>
-        </properties>
-      </component>
-      <component id="6c21c" class="javax.swing.JTextArea" binding="InfoTextAreaRelatorio">
-        <constraints>
-          <grid row="3" column="3" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="b2b9c" class="javax.swing.JButton" binding="ButtonSaidaRelatorio">
-        <constraints>
-          <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="false"/>
-          <foreground color="-1"/>
-          <icon value="IMG/saida M.png"/>
-          <label value=""/>
-          <text value=""/>
         </properties>
       </component>
       <component id="69e7d" class="javax.swing.JLabel" binding="AvalTitleRelatorio">
@@ -165,6 +136,51 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="b2b9c" class="javax.swing.JButton" binding="ButtonSaidaRelatorio">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <foreground color="-1"/>
+          <icon value="IMG/saida M.png"/>
+          <label value=""/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="f286c" class="javax.swing.JButton" binding="enviarButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13750220"/>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+          <text value="Enviar"/>
+        </properties>
+      </component>
+      <component id="8e34f" class="javax.swing.JLabel" binding="InfoTextRelatorio">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13750220"/>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="229f7" class="javax.swing.JLabel" binding="ObsTitleRelatorio">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="16" style="1"/>
+          <foreground color="-1"/>
+          <text value="Observações"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

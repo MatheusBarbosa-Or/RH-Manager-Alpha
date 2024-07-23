@@ -117,6 +117,25 @@ public class TelaHomepage extends Component {
 
             }
         });
+
+        ButtonRelatorioHomepage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer FuncSelect = TableFunHomepage.getSelectedRow();
+                if(FuncSelect != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                    Funcionarios funcionario = InfoFuncionario(id);
+                    if (funcionario != null) {
+                        TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario);
+                        FrameHomepage.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(FrameHomepage, "Nenhum funcionário selecionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
     }
 
     private void configurarTabela() {
