@@ -79,7 +79,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
                     Funcionarios funcionario = InfoFuncionario(id);
                     if (funcionario != null) {
-                        TelaRegistro telaRegistro = new TelaRegistro(FrameHomepage, funcionario);
+                        TelaFicha telaFicha = new TelaFicha(FrameHomepage, funcionario);
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
