@@ -56,6 +56,7 @@ public class TelaRelatorio {
                 + "Cargo: " + funcionario.getCargo() + "<br>"
                 + "Horario: " + funcionario.getHorario() + "</html>");
         /////////////////////////////////////////////////////////////////////////////////
+
         ButtonSaidaRelatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +64,7 @@ public class TelaRelatorio {
                 FrameHomepage.setVisible(true);
             }
         });
+
         Star1Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,7 +138,7 @@ public class TelaRelatorio {
         String obs = ObsTextAreaRelatorio.getText();
         String relatorio = "Relatorio: \n" + "\nNome: " + funcionario.getNome() + "\nId: " + funcionario.getFuncionarioId() +
                 "\nCargo: " + funcionario.getCargo() + "\nHorario: " + funcionario.getHorario() + "\nAvaliação: " + av +
-                "\nObservação: " + obs;
+                "\nObservação: \n" + obs;
         return(relatorio);
     }
 }
