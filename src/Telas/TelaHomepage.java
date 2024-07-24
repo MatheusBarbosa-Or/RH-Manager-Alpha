@@ -5,7 +5,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 import java.util.List;
 
 import Classes.Funcionarios;
@@ -77,7 +76,7 @@ public class TelaHomepage extends Component {
                 Integer FuncSelect = TableFunHomepage.getSelectedRow();
                 if(FuncSelect != -1){
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
-                    Funcionarios funcionario = InfoFuncionario(id);
+                    Funcionarios funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaFicha telaFicha = new TelaFicha(FrameHomepage, funcionario);
                         FrameHomepage.setVisible(false);
@@ -104,7 +103,7 @@ public class TelaHomepage extends Component {
                 Integer FuncSelect = TableFunHomepage.getSelectedRow();
                 if(FuncSelect != -1){
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
-                    Funcionarios funcionario = InfoFuncionario(id);
+                    Funcionarios funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario, () -> configurarTabela());
                         FrameHomepage.setVisible(false);
@@ -124,7 +123,7 @@ public class TelaHomepage extends Component {
                 Integer FuncSelect = TableFunHomepage.getSelectedRow();
                 if(FuncSelect != -1){
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
-                    Funcionarios funcionario = InfoFuncionario(id);
+                    Funcionarios funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario);
                         FrameHomepage.setVisible(false);
@@ -155,40 +154,4 @@ public class TelaHomepage extends Component {
         TableFunHomepage.setModel(model);
     }
 
-    private Funcionarios InfoFuncionario(int id){
-        try(Connection conn = DbConnection.getConnection()) {
-            String sql = "SELECT Nome, CPF, DataNascimento, Email, Genero, Cargo, Horario, Id FROM Funcionarios WHERE Id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                Funcionarios funcSelected = new Funcionarios();
-
-                String nome = rs.getString("Nome");
-                String cpf = rs.getString("CPF");
-                String dataNascimento = rs.getString("DataNascimento");
-                String email = rs.getString("Email");
-                String genero = rs.getString("Genero");
-                String cargo = rs.getString("Cargo");
-                String horario = rs.getString("Horario");
-                int funcionarioId = rs.getInt("Id");
-
-                funcSelected.setNome(nome);
-                funcSelected.setCpf(cpf);
-                funcSelected.setDataNascimento(dataNascimento);
-                funcSelected.setEmail(email);
-                funcSelected.setGenero(genero);
-                funcSelected.setCargo(cargo);
-                funcSelected.setHorario(horario);
-                funcSelected.setFuncionarioId(funcionarioId);
-
-                return funcSelected;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

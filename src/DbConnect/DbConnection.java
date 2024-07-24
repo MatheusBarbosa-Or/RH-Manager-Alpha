@@ -1,5 +1,8 @@
 package DbConnect;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -112,4 +115,61 @@ public class DbConnection {
         }
     }
 
+    public static void uploadRelatorio(String caminho, String nomeArquivo, Integer funcionarioId) {
+        String sql = "INSERT INTO Relatorios(Titulo, File, FuncionarioId) VALUES(?, ?, ?)";
+
+        try (Connection conn = DbConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             FileInputStream fis = new FileInputStream((caminho))) {
+
+            pstmt.setString(1, nomeArquivo);
+            pstmt.setBinaryStream(2, fis, (int) new File(caminho).length());
+            pstmt.setInt(3, funcionarioId); // Insere o ID do funcionário
+
+            pstmt.executeUpdate();
+            System.out.println("File uploaded successfully!");
+
+        } catch (SQLException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static Funcionarios infoFuncionario(int id){
+        try(Connection conn = DbConnection.getConnection()) {
+            String sql = "SELECT Nome, CPF, DataNascimento, Email, Genero, Cargo, Horario, Id FROM Funcionarios WHERE Id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Funcionarios funcSelected = new Funcionarios();
+
+                String nome = rs.getString("Nome");
+                String cpf = rs.getString("CPF");
+                String dataNascimento = rs.getString("DataNascimento");
+                String email = rs.getString("Email");
+                String genero = rs.getString("Genero");
+                String cargo = rs.getString("Cargo");
+                String horario = rs.getString("Horario");
+                int funcionarioId = rs.getInt("Id");
+
+                funcSelected.setNome(nome);
+                funcSelected.setCpf(cpf);
+                funcSelected.setDataNascimento(dataNascimento);
+                funcSelected.setEmail(email);
+                funcSelected.setGenero(genero);
+                funcSelected.setCargo(cargo);
+                funcSelected.setHorario(horario);
+                funcSelected.setFuncionarioId(funcionarioId);
+
+                return funcSelected;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
+

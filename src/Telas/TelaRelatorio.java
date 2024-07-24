@@ -3,9 +3,12 @@ package Telas;
 import javax.swing.*;
 
 import Classes.Funcionarios;
+import DbConnect.DbConnection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class TelaRelatorio {
     private JPanel PanelRelatorio;
@@ -127,18 +130,31 @@ public class TelaRelatorio {
         enviarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String relatorioFunc = gerarRelatorio(funcionario,av);
-                JOptionPane.showMessageDialog(FrameRelatorio, relatorioFunc, "Sucesso", JOptionPane.ERROR_MESSAGE);
-
+                try {
+                    String caminho = gerarRelatorio(funcionario, av); // Obtém o caminho do arquivo gerado
+                    String nomeArquivo = "Relatorio_" + funcionario.getFuncionarioId() + ".txt"; // Define o nome do arquivo
+                    JOptionPane.showMessageDialog(FrameRelatorio, "Relatório criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    DbConnection.uploadRelatorio(caminho, nomeArquivo, funcionario.getFuncionarioId()); // Chama a função de upload passando o caminho e nome do arquivo
+                    FrameRelatorio.setVisible(false);
+                    frameHomepage.setVisible(true);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(FrameRelatorio, "Erro ao criar relatório!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
-    public String gerarRelatorio(Funcionarios funcionario, String av){
+    public String gerarRelatorio(Funcionarios funcionario, String av) throws IOException{
         String obs = ObsTextAreaRelatorio.getText();
         String relatorio = "Relatorio: \n" + "\nNome: " + funcionario.getNome() + "\nId: " + funcionario.getFuncionarioId() +
                 "\nCargo: " + funcionario.getCargo() + "\nHorario: " + funcionario.getHorario() + "\nAvaliação: " + av +
                 "\nObservação: \n" + obs;
-        return(relatorio);
+
+        String nomeArquivo = "src/Relatorios/Relatorio_" + funcionario.getFuncionarioId() + ".txt";
+        try (FileWriter escritor = new FileWriter(nomeArquivo)) {
+            escritor.write(relatorio);
+        }
+        return nomeArquivo;
     }
 }
