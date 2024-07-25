@@ -55,6 +55,8 @@ public class TelaCadastro {
         genero = "";
 
         FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameCadastro.setSize(700, 600);
+        FrameCadastro.setLocationRelativeTo(null);
         FrameCadastro.add(PanelCadastro);
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
@@ -177,7 +179,7 @@ public class TelaCadastro {
                 cargo.equals("Estagiario Juridico")) {
             prefixo = "897";
         } else if (cargo.equals("Admin")) {
-            prefixo = "001";
+            prefixo = "100";
         }
 
         String cpfDigitos = cpf.replaceAll("\\D", ""); // Remove non-digit characters

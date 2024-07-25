@@ -171,5 +171,32 @@ public class DbConnection {
         return null;
     }
 
+    public List<Funcionarios> buscarFuncionario(String funcPesquisado){
+        List<Funcionarios> funcionarioPesquisado = new ArrayList<>();
+        String sql = "SELECT * FROM Funcionarios WHERE Nome LIKE ?";
+
+        try (Connection conn = DbConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + funcPesquisado + "%");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Funcionarios funcionario = new Funcionarios();
+                funcionario.setNome(rs.getString("Nome"));
+                funcionario.setCpf(rs.getString("CPF"));
+                funcionario.setEmail(rs.getString("Email"));
+                funcionario.setDataNascimento(rs.getString("DataNascimento"));
+                funcionario.setGenero(rs.getString("Genero"));
+                funcionario.setCargo(rs.getString("Cargo"));
+                funcionario.setHorario(rs.getString("Horario"));
+                funcionario.setFuncionarioId(rs.getInt("Id"));
+                funcionarioPesquisado.add(funcionario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return funcionarioPesquisado;
+    }
 }
 

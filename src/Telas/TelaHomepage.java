@@ -36,6 +36,8 @@ public class TelaHomepage extends Component {
         FrameHomepage = new JFrame("RH Manager - Alpha");
 
         FrameHomepage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameHomepage.setSize(1024, 768);
+        FrameHomepage.setLocationRelativeTo(null);
         FrameHomepage.add(PanelHomepage);
         FrameHomepage.pack();
         FrameHomepage.setVisible(true);
@@ -125,7 +127,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
                     Funcionarios funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
-                        TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario);
+                        TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario, usuarioLogado);
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -135,6 +137,34 @@ public class TelaHomepage extends Component {
                 }
             }
         });
+
+        ButtonPesquisaHomepage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String funcPesquisado = FieldPesquisaHomepage.getText();
+                DbConnection PesquisarFunc = new DbConnection();
+                List<Funcionarios> funcionarioPesquisado;
+
+                if (funcPesquisado.trim().isEmpty()) {
+                    funcionarioPesquisado = PesquisarFunc.buscarTodosFuncionarios();
+                } else {
+                    funcionarioPesquisado = PesquisarFunc.buscarFuncionario(funcPesquisado);
+                }
+
+                DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Horário", "ID"}, 0) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+
+                for (Funcionarios func : funcionarioPesquisado) {
+                    model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario(), func.getFuncionarioId()});
+                }
+                TableFunHomepage.setModel(model);
+            }
+        });
+
     }
 
     private void configurarTabela() {

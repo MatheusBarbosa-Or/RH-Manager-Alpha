@@ -3,6 +3,7 @@ package Telas;
 import javax.swing.*;
 
 import Classes.Funcionarios;
+import Classes.User;
 import DbConnect.DbConnection;
 
 import java.awt.event.ActionEvent;
@@ -32,11 +33,13 @@ public class TelaRelatorio {
 
     private String av;
 
-    public TelaRelatorio(JFrame frameHomepage, Funcionarios funcionario){
+    public TelaRelatorio(JFrame frameHomepage, Funcionarios funcionario, User usuarioLogado){
         FrameRelatorio = new JFrame("RH Manager - Alpha");
         this.FrameHomepage =  frameHomepage;
 
         FrameRelatorio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameRelatorio.setSize(800, 640);
+        FrameRelatorio.setLocationRelativeTo(null);
         FrameRelatorio.add(PanelRelatorio);
         FrameRelatorio.pack();
         FrameRelatorio.setVisible(true);
@@ -131,12 +134,16 @@ public class TelaRelatorio {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String caminho = gerarRelatorio(funcionario, av); // Obtém o caminho do arquivo gerado
-                    String nomeArquivo = "Relatorio_" + funcionario.getFuncionarioId() + ".txt"; // Define o nome do arquivo
-                    JOptionPane.showMessageDialog(FrameRelatorio, "Relatório criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    DbConnection.uploadRelatorio(caminho, nomeArquivo, funcionario.getFuncionarioId()); // Chama a função de upload passando o caminho e nome do arquivo
-                    FrameRelatorio.setVisible(false);
-                    frameHomepage.setVisible(true);
+                    if (av != null){
+                        String caminho = gerarRelatorio(funcionario, av, usuarioLogado);
+                        String nomeArquivo = "Relatorio_" + usuarioLogado.getUsuarioid() + ":" + funcionario.getFuncionarioId() + ".txt";
+                        JOptionPane.showMessageDialog(FrameRelatorio, "Relatório criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        DbConnection.uploadRelatorio(caminho, nomeArquivo, funcionario.getFuncionarioId());
+                        FrameRelatorio.setVisible(false);
+                        frameHomepage.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(FrameRelatorio, "Erro ao criar relatório, por favor avalie o funcionario!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(FrameRelatorio, "Erro ao criar relatório!", "Erro", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
@@ -145,13 +152,13 @@ public class TelaRelatorio {
         });
     }
 
-    public String gerarRelatorio(Funcionarios funcionario, String av) throws IOException{
+    public String gerarRelatorio(Funcionarios funcionario, String av, User usuarioLogado) throws IOException{
         String obs = ObsTextAreaRelatorio.getText();
         String relatorio = "Relatorio: \n" + "\nNome: " + funcionario.getNome() + "\nId: " + funcionario.getFuncionarioId() +
                 "\nCargo: " + funcionario.getCargo() + "\nHorario: " + funcionario.getHorario() + "\nAvaliação: " + av +
                 "\nObservação: \n" + obs;
 
-        String nomeArquivo = "src/Relatorios/Relatorio_" + funcionario.getFuncionarioId() + ".txt";
+        String nomeArquivo = "src/Relatorios/Relatorio_" + usuarioLogado.getUsuarioid() + ":" + funcionario.getFuncionarioId() + ".txt";
         try (FileWriter escritor = new FileWriter(nomeArquivo)) {
             escritor.write(relatorio);
         }

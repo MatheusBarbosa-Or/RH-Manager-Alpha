@@ -25,6 +25,8 @@ public class TelaDesligamento {
 
         FrameDesligamento = new JFrame("RH Manager - Alpha");
         FrameDesligamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameDesligamento.setSize(540, 340);
+        FrameDesligamento.setLocationRelativeTo(null);
         FrameDesligamento.add(PanelDesl);
         FrameDesligamento.pack();
         FrameDesligamento.setVisible(true);

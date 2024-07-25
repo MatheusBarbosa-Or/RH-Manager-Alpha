@@ -29,6 +29,12 @@ public class TelaLogin {
     public TelaLogin() {
 
         FrameLogin = new JFrame("RH Manager - Alpha");
+        FrameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameLogin.setSize(600, 360);
+        FrameLogin.setLocationRelativeTo(null);
+        FrameLogin.add(PanelLogin);
+        FrameLogin.pack();
+        FrameLogin.setVisible(true);
 
         ButtonLoginLogin.addActionListener(new ActionListener() {
             @Override
@@ -45,10 +51,6 @@ public class TelaLogin {
             }
         });
 
-        FrameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        FrameLogin.add(PanelLogin);
-        FrameLogin.pack();
-        FrameLogin.setVisible(true);
     }
 
     private Connection connect() {
@@ -87,6 +89,7 @@ public class TelaLogin {
                 usuario.setPassword(rs.getString("password"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setCargo(rs.getString("cargo"));
+                usuario.setUsuarioid(rs.getInt("Id"));
                 return usuario;
             }
         } catch (SQLException e) {

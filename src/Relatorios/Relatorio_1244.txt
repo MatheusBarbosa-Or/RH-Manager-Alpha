@@ -1,9 +1,0 @@
-Relatorio: 
-
-Nome: João
-Id: 1244
-Cargo: Engenheiro de Software
-Horario: 7:00 - 14:00
-Avaliação: 5
-Observação: 
-O brabo não tem jeito

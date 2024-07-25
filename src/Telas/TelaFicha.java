@@ -28,6 +28,8 @@ public class TelaFicha {
         this.FrameHomepage = frameHomepage;
 
         FrameFicha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FrameFicha.setSize(360, 600);
+        FrameFicha.setLocationRelativeTo(null);
         FrameFicha.add(PanelFicha);
         FrameFicha.pack();
         FrameFicha.setVisible(true);

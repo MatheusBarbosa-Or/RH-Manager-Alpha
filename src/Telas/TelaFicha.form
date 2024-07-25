@@ -28,7 +28,7 @@
           <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Nome"/>
         </properties>
@@ -38,7 +38,7 @@
           <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Data de Nascimento"/>
         </properties>
@@ -48,7 +48,7 @@
           <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Genero"/>
         </properties>
@@ -58,7 +58,7 @@
           <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Cargo"/>
         </properties>
@@ -68,7 +68,7 @@
           <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="CPF"/>
         </properties>
@@ -78,7 +78,7 @@
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Ficha do Funcionario"/>
         </properties>
@@ -101,7 +101,7 @@
           <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="E-Mail"/>
         </properties>
@@ -111,7 +111,7 @@
           <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="16" style="1"/>
+          <font name="Calibri" size="16" style="1"/>
           <foreground color="-1"/>
           <text value="Horario"/>
         </properties>
