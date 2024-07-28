@@ -14,6 +14,7 @@ import java.util.List;
 
 import Classes.User;
 import Classes.Funcionarios;
+import Classes.UserPresence;
 
 public class DbConnection {
     private static final String URL = "jdbc:sqlite:DataBase/RH_Manager_DB.db"; // Corrigido a URL
@@ -70,6 +71,20 @@ public class DbConnection {
             pstmt.setString(6, funcionario.getCargo());
             pstmt.setString(7, funcionario.getHorario());
             pstmt.setInt(8, funcionario.getFuncionarioId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void inserirUsuarioPresenca(UserPresence usuarioPressenca) {
+        String sql = "INSERT INTO Usuarios_Presenca(Username, Password, FuncionarioId) VALUES(?, ?, ?)";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, usuarioPressenca.getUsername());
+            pstmt.setString(2, usuarioPressenca.getPassword());
+            pstmt.setInt(3, usuarioPressenca.getUserPresenceId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -5,6 +5,7 @@ import javax.swing.text.MaskFormatter;
 
 import Classes.User;
 import Classes.Funcionarios;
+import Classes.UserPresence;
 import DbConnect.DbConnection;
 
 import java.awt.event.ActionEvent;
@@ -139,6 +140,8 @@ public class TelaCadastro {
                 }else if (novoUsuario_Funcionario == 2) {
                     Funcionarios novoFuncionario = cadastrarFuncionario();
                     if (novoFuncionario != null){
+                        UserPresence usuarioPresenca = gerarLoginPresenca(novoFuncionario);
+                        DbConnection.inserirUsuarioPresenca(usuarioPresenca);
                         DbConnection.inserirFuncionario(novoFuncionario);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
@@ -270,4 +273,18 @@ public class TelaCadastro {
         }
         return null;
     }
+
+    private UserPresence gerarLoginPresenca(Funcionarios funcionario){
+        UserPresence usuarioPresenca = new UserPresence();
+        Integer username = funcionario.getFuncionarioId();
+        Integer id = funcionario.getFuncionarioId();
+        String password = funcionario.getNome().substring(0,2) + "#" + funcionario.getCpf().substring(0,3);
+
+        usuarioPresenca.setUsername(username);
+        usuarioPresenca.setPassword(password);
+        usuarioPresenca.setUserPresenceId(id);
+
+        return (usuarioPresenca);
+    }
+
 }
