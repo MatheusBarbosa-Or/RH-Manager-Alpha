@@ -3,13 +3,7 @@ package Telas;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-import Classes.Funcionarios;
 import Classes.User;
 import DbConnect.DbConnection;
 
@@ -57,32 +51,9 @@ public class TelaLogin {
     private User realizarLogin() {
         String username = UsernameFieldLogin.getText();
         String password = new String(PasswordFieldLogin.getPassword());
-        String sql = "SELECT * FROM Usuarios WHERE username = ? AND password = ?";
+        User usuario = DbConnection.realizarLogin(username, password);
 
-        try (Connection conn = DbConnection.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            // Set the values
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-
-            ResultSet rs = pstmt.executeQuery();
-
-            // Loop through the result set
-            if (rs.next()) {
-                User usuario = new User();
-                usuario.setUsername(rs.getString("username"));
-                usuario.setPassword(rs.getString("password"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setCargo(rs.getString("cargo"));
-                usuario.setUsuarioid(rs.getInt("Id"));
-                return usuario;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-
+        return usuario;
     }
 
     public void limparCampos() {
