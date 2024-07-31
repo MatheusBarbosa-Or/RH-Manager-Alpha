@@ -141,8 +141,8 @@ public class TelaCadastro {
                     Funcionarios novoFuncionario = cadastrarFuncionario();
                     if (novoFuncionario != null){
                         UserPresence usuarioPresenca = gerarLoginPresenca(novoFuncionario);
-                        DbConnection.inserirUsuarioPresenca(usuarioPresenca);
                         DbConnection.inserirFuncionario(novoFuncionario);
+                        DbConnection.inserirUsuarioPresenca(usuarioPresenca);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
                         FrameHomepage.setVisible(true);

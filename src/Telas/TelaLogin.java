@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 
 import Classes.Funcionarios;
 import Classes.User;
+import DbConnect.DbConnection;
 
 public class TelaLogin {
 
@@ -53,27 +54,12 @@ public class TelaLogin {
 
     }
 
-    private Connection connect() {
-
-        String url = "jdbc:sqlite:DataBase/RH_Manager_DB.db"; // Coloque o caminho do seu banco de dados aqui
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-            DbConnectionIcon.setIcon(new ImageIcon(getClass().getResource("/IMG/DbOn.png")));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            DbConnectionIcon.setIcon(new ImageIcon(getClass().getResource("/IMG/DbOff.png")));
-        }
-        return conn;
-
-    }
-
     private User realizarLogin() {
         String username = UsernameFieldLogin.getText();
         String password = new String(PasswordFieldLogin.getPassword());
         String sql = "SELECT * FROM Usuarios WHERE username = ? AND password = ?";
 
-        try (Connection conn = connect();
+        try (Connection conn = DbConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Set the values
@@ -103,6 +89,5 @@ public class TelaLogin {
         UsernameFieldLogin.setText("");
         PasswordFieldLogin.setText("");
     }
-
 
 }
