@@ -5,7 +5,6 @@ import javax.swing.text.MaskFormatter;
 
 import Classes.User;
 import Classes.Funcionarios;
-import Classes.UserPresence;
 import DbConnect.DbConnection;
 
 import java.awt.event.ActionEvent;
@@ -140,9 +139,7 @@ public class TelaCadastro {
                 }else if (novoUsuario_Funcionario == 2) {
                     Funcionarios novoFuncionario = cadastrarFuncionario();
                     if (novoFuncionario != null){
-                        UserPresence usuarioPresenca = gerarLoginPresenca(novoFuncionario);
                         DbConnection.inserirFuncionario(novoFuncionario);
-                        DbConnection.inserirUsuarioPresenca(usuarioPresenca);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
                         FrameCadastro.setVisible(false);
                         FrameHomepage.setVisible(true);
@@ -269,22 +266,16 @@ public class TelaCadastro {
             funcionario.setCargo(cargo);
             funcionario.setHorario(horario);
             funcionario.setFuncionarioId(gerarId(cargo,cpf));
+            funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome));
             return funcionario;
         }
         return null;
     }
 
-    private UserPresence gerarLoginPresenca(Funcionarios funcionario){
-        UserPresence usuarioPresenca = new UserPresence();
-        Integer username = funcionario.getFuncionarioId();
-        Integer id = funcionario.getFuncionarioId();
-        String password = funcionario.getNome().substring(0,2) + "#" + funcionario.getCpf().substring(0,3);
+    private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome){
+        String password = nome.substring(0,2) + "#" + cpf.substring(0,3);
 
-        usuarioPresenca.setUsername(username);
-        usuarioPresenca.setPassword(password);
-        usuarioPresenca.setUserPresenceId(id);
-
-        return (usuarioPresenca);
+        return (password);
     }
 
 }
