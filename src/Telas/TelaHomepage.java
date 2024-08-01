@@ -183,5 +183,4 @@ public class TelaHomepage extends Component {
         }
         TableFunHomepage.setModel(model);
     }
-
 }

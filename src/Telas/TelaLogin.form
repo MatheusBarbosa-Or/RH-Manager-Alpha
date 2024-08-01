@@ -73,7 +73,7 @@
           <margin top="2" left="5" bottom="2" right="5"/>
         </properties>
       </component>
-      <component id="35fa2" class="javax.swing.JButton" binding="ButtonLoginLogin">
+      <component id="35fa2" class="javax.swing.JButton" binding="ButtonLogin">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

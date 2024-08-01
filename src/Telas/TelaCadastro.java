@@ -47,7 +47,6 @@ public class TelaCadastro {
     private String genero;
     private int novoUsuario_Funcionario;
 
-
     public TelaCadastro(JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
         this.FrameHomepage = frameHomepage;
         this.novoUsuario_Funcionario = novoUsuario_Funcionario;
@@ -83,7 +82,6 @@ public class TelaCadastro {
             JOptionPane.showMessageDialog(null,"Erro ao formatar", "ERRO", JOptionPane.ERROR);
         }
 
-        //ComboBox Data de Nascimento
         if (DayComboBoxCadastro.getItemCount() == 0) {
             for (int i = 1; i <= 31; i++) {
                 DayComboBoxCadastro.addItem(i);
@@ -103,7 +101,6 @@ public class TelaCadastro {
             }
         }
 
-        //BoxCargo
         PosComboBoxCadastro.addItem("");
         PosComboBoxCadastro.addItem("Gerente de Projetos"); PosComboBoxCadastro.addItem("Engenheiro de Software");
         PosComboBoxCadastro.addItem("Desenvolvedor Senior"); PosComboBoxCadastro.addItem("Desenvolvedor Pleno");
@@ -112,13 +109,11 @@ public class TelaCadastro {
         PosComboBoxCadastro.addItem("Advogado Chefe"); PosComboBoxCadastro.addItem("Auxiliar Juridico");
         PosComboBoxCadastro.addItem("Estagiario Juridico"); PosComboBoxCadastro.addItem("Admin");
 
-        //ComboBox Genero
         GeneroComboBoxCadastro.addItem("");
         GeneroComboBoxCadastro.addItem("Feminino");
         GeneroComboBoxCadastro.addItem("Masculino");
         GeneroComboBoxCadastro.addItem("Outros");
 
-        //ComboBox Horarios
         TurnComboBoxCadastro.addItem("");
         TurnComboBoxCadastro.addItem("7:00 - 14:00");
         TurnComboBoxCadastro.addItem("14:00 - 21:00");
@@ -145,7 +140,6 @@ public class TelaCadastro {
                         FrameHomepage.setVisible(true);
                         onSave.run();
                     }
-
                 }
             }
         });
@@ -182,8 +176,8 @@ public class TelaCadastro {
             prefixo = "100";
         }
 
-        String cpfDigitos = cpf.replaceAll("\\D", ""); // Remove non-digit characters
-        String suffixo = cpfDigitos.substring(0, 3); // First three digits of the CPF
+        String cpfDigitos = cpf.replaceAll("\\D", "");
+        String suffixo = cpfDigitos.substring(0, 3);
 
         String idStr = prefixo + suffixo;
         return Integer.parseInt(idStr);
@@ -235,7 +229,6 @@ public class TelaCadastro {
         String cargo = (String) PosComboBoxCadastro.getSelectedItem();
         String horario = (String) TurnComboBoxCadastro.getSelectedItem();
 
-        // Verificação do email
         if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(FrameCadastro, "Email inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return null;

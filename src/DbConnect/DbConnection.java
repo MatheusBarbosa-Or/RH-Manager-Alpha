@@ -16,7 +16,7 @@ import Classes.User;
 import Classes.Funcionarios;
 
 public class DbConnection {
-    private static final String URL = "jdbc:sqlite:DataBase/RH_Manager_DB.db"; // Corrigido a URL
+    private static final String URL = "jdbc:sqlite:DataBase/RH_Manager_DB.db";
 
     static {
         try {
@@ -34,10 +34,6 @@ public class DbConnection {
             System.out.println(e.getMessage());
         }
         return conn;
-    }
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL);
     }
 
     public static void inserirUsuario(User user) {
@@ -81,7 +77,7 @@ public class DbConnection {
         List<Funcionarios> funcionarios = new ArrayList<>();
         String sql = "SELECT * FROM Funcionarios";
 
-        try (Connection conn = DbConnection.connect();
+        try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -119,7 +115,7 @@ public class DbConnection {
     public static void uploadRelatorio(String caminho, String nomeArquivo, Integer funcionarioId) {
         String sql = "INSERT INTO Relatorios(Titulo, File, FuncionarioId) VALUES(?, ?, ?)";
 
-        try (Connection conn = DbConnection.getConnection();
+        try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              FileInputStream fis = new FileInputStream((caminho))) {
 
@@ -136,7 +132,7 @@ public class DbConnection {
     }
 
     public static Funcionarios infoFuncionario(int id){
-        try(Connection conn = DbConnection.getConnection()) {
+        try(Connection conn = connect()) {
             String sql = "SELECT Nome, CPF, DataNascimento, Email, Genero, Cargo, Horario, Id FROM Funcionarios WHERE Id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -176,7 +172,7 @@ public class DbConnection {
         List<Funcionarios> funcionarioPesquisado = new ArrayList<>();
         String sql = "SELECT * FROM Funcionarios WHERE Nome LIKE ?";
 
-        try (Connection conn = DbConnection.connect();
+        try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, "%" + funcPesquisado + "%");
@@ -203,7 +199,7 @@ public class DbConnection {
     public static User realizarLogin(String username, String password){
         String sql = "SELECT * FROM Usuarios WHERE username = ? AND password = ?";
 
-        try (Connection conn = DbConnection.connect();
+        try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, username);

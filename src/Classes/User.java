@@ -1,6 +1,7 @@
 package Classes;
 
 public class User {
+
     private String username;
     private String password;
     private String nome;
@@ -8,7 +9,6 @@ public class User {
     private String cargo;
     private Integer Usuarioid;
 
-    // Getters and setters
     public String getUsername() {
         return username;
     }
@@ -56,16 +56,4 @@ public class User {
     public void setUsuarioid(Integer usuarioid) {
         this.Usuarioid = usuarioid;
     }
-
-    public void identify(){
-        System.out.println("Nome: " + this.nome);
-        System.out.println("CPF: " + this.cpf);
-        System.out.println("Cargo: " + this.cargo);
-    }
-
-    @Override
-    public String toString() {
-        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nCargo: " + this.cargo;
-    }
-
 }

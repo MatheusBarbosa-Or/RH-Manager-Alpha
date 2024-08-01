@@ -13,7 +13,7 @@ public class TelaLogin {
     private JPanel PanelLogin;
     private JTextField UsernameFieldLogin;
     private JPasswordField PasswordFieldLogin;
-    private JButton ButtonLoginLogin;
+    private JButton ButtonLogin;
     private JButton ButtonCadastroLogin;
     private JLabel IconLogin;
     private JLabel UsernameTitleLogin;
@@ -31,7 +31,7 @@ public class TelaLogin {
         FrameLogin.pack();
         FrameLogin.setVisible(true);
 
-        ButtonLoginLogin.addActionListener(new ActionListener() {
+        ButtonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 User usuarioLogado = realizarLogin();

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import Classes.Funcionarios;
 
-
 public class TelaFicha {
     private JPanel PanelFicha;
     private JLabel ProfileFicha;
@@ -49,8 +48,6 @@ public class TelaFicha {
         GeneroTitleFicha.setText("Genero: " + funcionario.getGenero());
         PosTitleFicha.setText("Cargo: " + funcionario.getCargo());
         TurnTitleFicha.setText("Horario: " + funcionario.getHorario());
-
-
 
         ButtonSaidaFicha.addActionListener(new ActionListener() {
             @Override

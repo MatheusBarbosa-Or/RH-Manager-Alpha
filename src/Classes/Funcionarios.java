@@ -1,6 +1,7 @@
 package Classes;
 
 public class Funcionarios {
+
     private String nome;
     private String cpf;
     private String email;
