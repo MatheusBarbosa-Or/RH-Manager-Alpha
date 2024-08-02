@@ -44,24 +44,7 @@ public class TelaRelatorio {
         FrameRelatorio.pack();
         FrameRelatorio.setVisible(true);
 
-        if (funcionario.getGenero().equals("Feminino")){
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
-        } else if (funcionario.getGenero().equals("Masculino")) {
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_M_G.png")));
-        } else if (funcionario.getGenero().equals("Outros")) {
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
-        }
-
-        TitleRelatorio.setText("Relatorio: " + funcionario.getNome());
-
-        InfoTextRelatorio.setText("<html>" + "<br>" + "Nome: " + funcionario.getNome() + "<br>"
-                + "Id: " + funcionario.getFuncionarioId() + "<br>"
-                + "Email: " + funcionario.getEmail() + "<br>"
-                + "Data de Nascimento: " + funcionario.getDataNascimento() + "<br>"
-                + "Genero: " + funcionario.getGenero() + "<br>"
-                + "Cargo: " + funcionario.getCargo() + "<br>"
-                + "Horario: " + funcionario.getHorario() + "</html>");
-        /////////////////////////////////////////////////////////////////////////////////
+        configurarTela(funcionario);
 
         ButtonSaidaRelatorio.addActionListener(new ActionListener() {
             @Override
@@ -106,6 +89,7 @@ public class TelaRelatorio {
                 av = "3";
             }
         });
+
         Star4Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -150,6 +134,26 @@ public class TelaRelatorio {
                 }
             }
         });
+    }
+
+    private void configurarTela(Funcionarios funcionario){
+        if (funcionario.getGenero().equals("Feminino")){
+            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
+        } else if (funcionario.getGenero().equals("Masculino")) {
+            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_M_G.png")));
+        } else if (funcionario.getGenero().equals("Outros")) {
+            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
+        }
+
+        TitleRelatorio.setText("Relatorio: " + funcionario.getNome());
+
+        InfoTextRelatorio.setText("<html>" + "<br>" + "Nome: " + funcionario.getNome() + "<br>"
+                + "Id: " + funcionario.getFuncionarioId() + "<br>"
+                + "Email: " + funcionario.getEmail() + "<br>"
+                + "Data de Nascimento: " + funcionario.getDataNascimento() + "<br>"
+                + "Genero: " + funcionario.getGenero() + "<br>"
+                + "Cargo: " + funcionario.getCargo() + "<br>"
+                + "Horario: " + funcionario.getHorario() + "</html>");
     }
 
     public String gerarRelatorio(Funcionarios funcionario, String av, User usuarioLogado) throws IOException{

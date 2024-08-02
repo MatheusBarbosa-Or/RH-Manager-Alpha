@@ -31,20 +31,7 @@ public class TelaDesligamento {
         FrameDesligamento.pack();
         FrameDesligamento.setVisible(true);
 
-        if (funcionario.getGenero().equals("Feminino")){
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
-        } else if (funcionario.getGenero().equals("Masculino")) {
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
-        } else if (funcionario.getGenero().equals("Outros")) {
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Outros2.png")));
-        }
-
-        MessageDsl.setText("<html>Deseja realmente desligar o funcionario:<br>" + "<br>"
-                + "Nome: " + funcionario.getNome() + "<br>"
-                + "Id: " + funcionario.getFuncionarioId() + "<br>"
-                + "Cargo: " + funcionario.getCargo() + "<br>"
-                + "Horario: " + funcionario.getHorario() + "</html>");
-        ////////////////////////////////////////////////////////////////////////////////////////////
+        configurarTela(funcionario);
 
         ButtonCancelarDesl.addActionListener(new ActionListener() {
             @Override
@@ -71,5 +58,21 @@ public class TelaDesligamento {
                 }
             }
         });
+    }
+
+    private void configurarTela(Funcionarios funcionario){
+        if (funcionario.getGenero().equals("Feminino")){
+            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
+        } else if (funcionario.getGenero().equals("Masculino")) {
+            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
+        } else if (funcionario.getGenero().equals("Outros")) {
+            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Outros2.png")));
+        }
+
+        MessageDsl.setText("<html>Deseja realmente desligar o funcionario:<br>" + "<br>"
+                + "Nome: " + funcionario.getNome() + "<br>"
+                + "Id: " + funcionario.getFuncionarioId() + "<br>"
+                + "Cargo: " + funcionario.getCargo() + "<br>"
+                + "Horario: " + funcionario.getHorario() + "</html>");
     }
 }

@@ -42,15 +42,7 @@ public class TelaHomepage extends Component {
         FrameHomepage.pack();
         FrameHomepage.setVisible(true);
 
-        if(usuarioLogado.getCargo().equals("Admin")){
-            ButtonDeslHomepage.setVisible(true);
-            ButtonNewUserHomepage.setVisible(true);
-            ButtonNewFunHomepage.setVisible(true);
-        }else{
-            ButtonDeslHomepage.setVisible(false);
-            ButtonNewUserHomepage.setVisible(false);
-            ButtonNewFunHomepage.setVisible(false);
-        }
+        configurarTela(usuarioLogado);
 
         configurarTabela();
 
@@ -164,7 +156,6 @@ public class TelaHomepage extends Component {
                 TableFunHomepage.setModel(model);
             }
         });
-
     }
 
     private void configurarTabela() {
@@ -182,5 +173,17 @@ public class TelaHomepage extends Component {
             model.addRow(new Object[]{func.getNome(), func.getCargo(), func.getHorario(), func.getFuncionarioId()});
         }
         TableFunHomepage.setModel(model);
+    }
+
+    private void configurarTela(User usuarioLogado){
+        if(usuarioLogado.getCargo().equals("Admin")){
+            ButtonDeslHomepage.setVisible(true);
+            ButtonNewUserHomepage.setVisible(true);
+            ButtonNewFunHomepage.setVisible(true);
+        }else{
+            ButtonDeslHomepage.setVisible(false);
+            ButtonNewUserHomepage.setVisible(false);
+            ButtonNewFunHomepage.setVisible(false);
+        }
     }
 }

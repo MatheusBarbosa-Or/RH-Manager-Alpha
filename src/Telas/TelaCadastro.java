@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,6 +61,43 @@ public class TelaCadastro {
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
 
+        configurarTela();
+
+        RegisterButtonCadastro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(novoUsuario_Funcionario == 1){
+                    User novoUsuario = cadastrarUsuario();
+                    if (novoUsuario != null) {
+                        DbConnection.inserirUsuario(novoUsuario);
+                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
+                        FrameCadastro.setVisible(false);
+                        FrameHomepage.setVisible(true);
+                    }
+                }else if (novoUsuario_Funcionario == 2) {
+                    Funcionarios novoFuncionario = cadastrarFuncionario();
+                    if (novoFuncionario != null){
+                        DbConnection.inserirFuncionario(novoFuncionario);
+                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
+                        FrameCadastro.setVisible(false);
+                        FrameHomepage.setVisible(true);
+                        onSave.run();
+                    }
+                }
+            }
+        });
+
+        CancelButtonCadastro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrameCadastro.setVisible(false);
+                FrameHomepage.setVisible(true);
+            }
+        });
+
+    }
+
+    private void configurarTela(){
         if (novoUsuario_Funcionario == 1){
             EmailTitleCadastro.setVisible(false); GeneroTitleCadastro.setVisible(false);
             EmailFieldCadastro.setVisible(false); GeneroComboBoxCadastro.setVisible(false);
@@ -119,38 +157,6 @@ public class TelaCadastro {
         TurnComboBoxCadastro.addItem("14:00 - 21:00");
         TurnComboBoxCadastro.addItem("10:00 - 14:00");
         TurnComboBoxCadastro.addItem("14:00 - 18:00");
-
-        RegisterButtonCadastro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(novoUsuario_Funcionario == 1){
-                    User novoUsuario = cadastrarUsuario();
-                    if (novoUsuario != null) {
-                        DbConnection.inserirUsuario(novoUsuario);
-                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
-                        FrameCadastro.setVisible(false);
-                        FrameHomepage.setVisible(true);
-                    }
-                }else if (novoUsuario_Funcionario == 2) {
-                    Funcionarios novoFuncionario = cadastrarFuncionario();
-                    if (novoFuncionario != null){
-                        DbConnection.inserirFuncionario(novoFuncionario);
-                        JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
-                        FrameCadastro.setVisible(false);
-                        FrameHomepage.setVisible(true);
-                        onSave.run();
-                    }
-                }
-            }
-        });
-
-        CancelButtonCadastro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FrameCadastro.setVisible(false);
-                FrameHomepage.setVisible(true);
-            }
-        });
 
     }
 
@@ -240,8 +246,10 @@ public class TelaCadastro {
         }
 
         try {
-            if (cpf.length() != 14) {
+            if (cpf.length() != 14 ) {
                 throw new IllegalArgumentException("CPF deve conter exatamente 11 dígitos!");
+            } else if (!isCpfValid(cpf)) {
+                throw new IllegalArgumentException("CPF invalido!");
             }
         }catch (IllegalArgumentException e){
             JOptionPane.showMessageDialog(FrameCadastro, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -271,4 +279,61 @@ public class TelaCadastro {
         return (password);
     }
 
+    private boolean isCpfValid (String cpf){
+        String  cpfVerify = cpf.substring(0,3) + cpf.substring(4,7) + cpf.substring(8,11) + cpf.substring(12,14);
+
+        if (cpfVerify.equals("00000000000") || cpfVerify.equals("11111111111") || cpfVerify.equals("22222222222") || cpfVerify.equals("33333333333") || cpfVerify.equals("44444444444") || cpfVerify.equals("55555555555") || cpfVerify.equals("66666666666") || cpfVerify.equals("77777777777") || cpfVerify.equals("88888888888") || cpfVerify.equals("99999999999") || (cpfVerify.length() != 11)){
+            return(false);
+        }
+
+        char digito10, digito11;
+        int soma, i, resto, num, peso;
+
+        try {
+            // Calculo do 1o. Digito Verificador
+            soma = 0;
+            peso = 10;
+            for (i = 0; i < 9; i++) {
+                // converte o i-esimo caractere do CPF em um numero:
+                // por exemplo, transforma o caractere "0" no inteiro 0
+                // (48 eh a posicao de "0" na tabela ASCII)
+                num = (int)(cpfVerify.charAt(i) - 48);
+                soma = soma + (num * peso);
+                peso = peso - 1;
+            }
+
+            resto = 11 - (soma % 11);
+            if ((resto == 10) || (resto == 11)){
+                digito10 = '0';
+            } else{
+                digito10 = (char)(resto + 48); // converte no respectivo caractere numerico
+            }
+
+            // Calculo do 2o. Digito Verificador
+            soma = 0;
+            peso = 11;
+            for(i = 0; i < 10; i++) {
+                num = (int)(cpfVerify.charAt(i) - 48);
+                soma = soma + (num * peso);
+                peso = peso - 1;
+            }
+
+            resto = 11 - (soma % 11);
+            if ((resto == 10) || (resto == 11)){
+                digito11 = '0';
+            } else{
+                digito11 = (char)(resto + 48);
+            }
+
+            // Verifica se os digitos calculados conferem com os digitos informados.
+            if ((digito10 == cpfVerify.charAt(9)) && (digito11 == cpfVerify.charAt(10))){
+                return(true);
+            } else{
+                return(false);
+            }
+
+        } catch (InputMismatchException erro) {
+            return(false);
+        }
+    }
 }

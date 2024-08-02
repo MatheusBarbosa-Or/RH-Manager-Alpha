@@ -33,6 +33,18 @@ public class TelaFicha {
         FrameFicha.pack();
         FrameFicha.setVisible(true);
 
+        configurarTela(funcionario);
+
+        ButtonSaidaFicha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrameFicha.setVisible(false);
+                FrameHomepage.setVisible(true);
+            }
+        });
+    }
+
+    private void configurarTela(Funcionarios funcionario){
         if (funcionario.getGenero().equals("Feminino")){
             ProfileFicha.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
         } else if (funcionario.getGenero().equals("Masculino")) {
@@ -48,13 +60,5 @@ public class TelaFicha {
         GeneroTitleFicha.setText("Genero: " + funcionario.getGenero());
         PosTitleFicha.setText("Cargo: " + funcionario.getCargo());
         TurnTitleFicha.setText("Horario: " + funcionario.getHorario());
-
-        ButtonSaidaFicha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FrameFicha.setVisible(false);
-                FrameHomepage.setVisible(true);
-            }
-        });
     }
 }
