@@ -6,12 +6,16 @@ import javax.swing.text.MaskFormatter;
 import Classes.User;
 import Classes.Funcionarios;
 import DbConnect.DbConnection;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,6 +242,9 @@ public class TelaCadastro {
         if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(FrameCadastro, "Email inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
+        } else if (!comparaEmail(email)) {
+            JOptionPane.showMessageDialog(FrameCadastro, "Email já cadastrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
@@ -250,6 +257,8 @@ public class TelaCadastro {
                 throw new IllegalArgumentException("CPF deve conter exatamente 11 dígitos!");
             } else if (!isCpfValid(cpf)) {
                 throw new IllegalArgumentException("CPF invalido!");
+            } else if (!comparaCpf(cpf)) {
+                throw new IllegalArgumentException("CPF já cadastrado!");
             }
         }catch (IllegalArgumentException e){
             JOptionPane.showMessageDialog(FrameCadastro, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -267,16 +276,29 @@ public class TelaCadastro {
             funcionario.setCargo(cargo);
             funcionario.setHorario(horario);
             funcionario.setFuncionarioId(gerarId(cargo,cpf));
-            funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome));
+            funcionario.setPasswordSalt(gerarSal());
+            funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome, funcionario.getPasswordSalt()));
             return funcionario;
         }
         return null;
     }
 
-    private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome){
-        String password = nome.substring(0,2) + "#" + cpf.substring(0,3);
+    private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome, String hashedSalt) {
+        String password = nome.substring(0, 2) + "#" + cpf.substring(0, 3);
+        String hashedPassword = BCrypt.withDefaults().hashToString(6, password.toCharArray());
 
-        return (password);
+        String saltedPassword = hashedPassword + hashedSalt;
+
+        return saltedPassword;
+    }
+
+    private String gerarSal() {
+        Random random = new Random();
+        int sal = random.nextInt(90000) + 10000;
+        String salt = String.valueOf(sal);
+        String hashedSalt = BCrypt.withDefaults().hashToString(6, salt.toCharArray());
+
+        return hashedSalt;
     }
 
     private boolean isCpfValid (String cpf){
@@ -336,4 +358,31 @@ public class TelaCadastro {
             return(false);
         }
     }
+
+    public boolean comparaCpf(String cpf) {
+        List<String> cpfsExistentes = DbConnection.cpfsExistentes();
+
+        for (String cpfExistente : cpfsExistentes) {
+            if (cpf.equals(cpfExistente)) {
+                System.out.println("CPF já Cadastrado");
+                return false;
+            }
+        }
+        System.out.println("CPF não Cadastrado");
+        return true;
+    }
+
+    public boolean comparaEmail(String email) {
+        List<String> emailsExistentes = DbConnection.emailsExistentes();
+
+        for (String emailExistente : emailsExistentes) {
+            if (email.equals(emailExistente)) {
+                System.out.println("E-mail já Cadastrado");
+                return false;
+            }
+        }
+        System.out.println("E-mail não Cadastrado");
+        return true;
+    }
+
 }

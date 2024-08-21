@@ -54,7 +54,7 @@ public class DbConnection {
     }
 
     public static void inserirFuncionario(Funcionarios funcionario) {
-        String sql = "INSERT INTO Funcionarios(Nome, CPF, Email, DataNascimento, Genero, Cargo, Horario, Id, PasswordPresenca) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Funcionarios(Nome, CPF, Email, DataNascimento, Genero, Cargo, Horario, Id, PasswordPresenca, PasswordSalt) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -67,6 +67,7 @@ public class DbConnection {
             pstmt.setString(7, funcionario.getHorario());
             pstmt.setInt(8, funcionario.getFuncionarioId());
             pstmt.setString(9, funcionario.getPasswordPresenca());
+            pstmt.setString(10, funcionario.getPasswordSalt());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -220,5 +221,41 @@ public class DbConnection {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public static List<String> cpfsExistentes() {
+        List<String> cpfsCadastrados = new ArrayList<>();
+        String sql = "SELECT CPF FROM Funcionarios";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                String cpfExistente = rs.getString("CPF");
+                cpfsCadastrados.add(cpfExistente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cpfsCadastrados;
+    }
+
+    public static List<String> emailsExistentes() {
+        List<String> emailsCadastrados = new ArrayList<>();
+        String sql = "SELECT Email FROM Funcionarios";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                String emailExistente = rs.getString("Email");
+                emailsCadastrados.add(emailExistente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return emailsCadastrados;
     }
 }

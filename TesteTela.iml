@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="sqlite-jdbc-3.46.0.0" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-2.0.13" level="project" />
+    <orderEntry type="library" name="bytes-1.5.0" level="project" />
+    <orderEntry type="library" name="bcrypt-0.9.0" level="project" />
   </component>
 </module>
