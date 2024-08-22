@@ -2,7 +2,7 @@ package Telas;
 
 import javax.swing.*;
 
-import Classes.Funcionarios;
+import Classes.Funcionario;
 import Classes.User;
 import DbConnect.DbConnection;
 
@@ -33,7 +33,7 @@ public class TelaRelatorio {
 
     private String av;
 
-    public TelaRelatorio(JFrame frameHomepage, Funcionarios funcionario, User usuarioLogado){
+    public TelaRelatorio(JFrame frameHomepage, Funcionario funcionario, User usuarioLogado){
         FrameRelatorio = new JFrame("RH Manager - Alpha");
         this.FrameHomepage =  frameHomepage;
 
@@ -136,7 +136,7 @@ public class TelaRelatorio {
         });
     }
 
-    private void configurarTela(Funcionarios funcionario){
+    private void configurarTela(Funcionario funcionario){
         if (funcionario.getGenero().equals("Feminino")){
             IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
         } else if (funcionario.getGenero().equals("Masculino")) {
@@ -156,7 +156,7 @@ public class TelaRelatorio {
                 + "Horario: " + funcionario.getHorario() + "</html>");
     }
 
-    public String gerarRelatorio(Funcionarios funcionario, String av, User usuarioLogado) throws IOException{
+    public String gerarRelatorio(Funcionario funcionario, String av, User usuarioLogado) throws IOException{
         String obs = ObsTextAreaRelatorio.getText();
         String relatorio = "Relatorio: \n" + "\nNome: " + funcionario.getNome() + "\nId: " + funcionario.getFuncionarioId() +
                 "\nCargo: " + funcionario.getCargo() + "\nHorario: " + funcionario.getHorario() + "\nAvaliação: " + av +

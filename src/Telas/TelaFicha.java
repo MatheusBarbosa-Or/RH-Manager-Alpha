@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Classes.Funcionarios;
+import Classes.Funcionario;
 
 public class TelaFicha {
     private JPanel PanelFicha;
@@ -22,7 +22,7 @@ public class TelaFicha {
     private JFrame FrameFicha;
     private JFrame FrameHomepage;
 
-    public TelaFicha(JFrame frameHomepage, Funcionarios funcionario){
+    public TelaFicha(JFrame frameHomepage, Funcionario funcionario){
         FrameFicha = new JFrame("RH Manager - Alpha");
         this.FrameHomepage = frameHomepage;
 
@@ -44,7 +44,7 @@ public class TelaFicha {
         });
     }
 
-    private void configurarTela(Funcionarios funcionario){
+    private void configurarTela(Funcionario funcionario){
         if (funcionario.getGenero().equals("Feminino")){
             ProfileFicha.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
         } else if (funcionario.getGenero().equals("Masculino")) {

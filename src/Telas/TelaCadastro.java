@@ -3,14 +3,13 @@ package Telas;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
+import Classes.Funcionario;
 import Classes.User;
-import Classes.Funcionarios;
 import DbConnect.DbConnection;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.SecureRandom;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -79,7 +78,7 @@ public class TelaCadastro {
                         FrameHomepage.setVisible(true);
                     }
                 }else if (novoUsuario_Funcionario == 2) {
-                    Funcionarios novoFuncionario = cadastrarFuncionario();
+                    Funcionario novoFuncionario = cadastrarFuncionario();
                     if (novoFuncionario != null){
                         DbConnection.inserirFuncionario(novoFuncionario);
                         JOptionPane.showMessageDialog(FrameCadastro, "Cadastro Realizado com Sucesso!");
@@ -227,7 +226,7 @@ public class TelaCadastro {
         return null;
     }
 
-    private Funcionarios cadastrarFuncionario() {
+    private Funcionario cadastrarFuncionario() {
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
@@ -266,7 +265,7 @@ public class TelaCadastro {
         }
 
         if (nome != null && cpf != null && email != null && dataNascimento != null && genero != null && cargo != null && horario != null) {
-            Funcionarios funcionario = new Funcionarios();
+            Funcionario funcionario = new Funcionario();
 
             funcionario.setNome(nome);
             funcionario.setCpf(cpf);
@@ -285,18 +284,17 @@ public class TelaCadastro {
 
     private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome, String hashedSalt) {
         String password = nome.substring(0, 2) + "#" + cpf.substring(0, 3);
-        String hashedPassword = BCrypt.withDefaults().hashToString(6, password.toCharArray());
+        String saltedPassword = password + hashedSalt;
+        String hashedPassword = BCrypt.withDefaults().hashToString(12, saltedPassword.toCharArray());
 
-        String saltedPassword = hashedPassword + hashedSalt;
-
-        return saltedPassword;
+        return hashedPassword;
     }
 
     private String gerarSal() {
         Random random = new Random();
         int sal = random.nextInt(90000) + 10000;
         String salt = String.valueOf(sal);
-        String hashedSalt = BCrypt.withDefaults().hashToString(6, salt.toCharArray());
+        String hashedSalt = BCrypt.withDefaults().hashToString(12, salt.toCharArray());
 
         return hashedSalt;
     }

@@ -1,6 +1,6 @@
 package Telas;
 
-import Classes.Funcionarios;
+import Classes.Funcionario;
 import DbConnect.DbConnection;
 
 import javax.swing.*;
@@ -17,9 +17,9 @@ public class TelaDesligamento {
 
     private JFrame FrameHomepage;
     private JFrame FrameDesligamento;
-    private Funcionarios funcionario;
+    private Funcionario funcionario;
 
-    public TelaDesligamento(JFrame frameHomepage, Funcionarios funcionario, Runnable onSave){
+    public TelaDesligamento(JFrame frameHomepage, Funcionario funcionario, Runnable onSave){
         this.FrameHomepage = frameHomepage;
         this.funcionario = funcionario;
 
@@ -60,7 +60,7 @@ public class TelaDesligamento {
         });
     }
 
-    private void configurarTela(Funcionarios funcionario){
+    private void configurarTela(Funcionario funcionario){
         if (funcionario.getGenero().equals("Feminino")){
             ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
         } else if (funcionario.getGenero().equals("Masculino")) {

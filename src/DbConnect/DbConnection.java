@@ -12,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Classes.Funcionario;
 import Classes.User;
-import Classes.Funcionarios;
 
 public class DbConnection {
     private static final String URL = "jdbc:sqlite:DataBase/RH_Manager_DB.db";
@@ -53,7 +53,7 @@ public class DbConnection {
         }
     }
 
-    public static void inserirFuncionario(Funcionarios funcionario) {
+    public static void inserirFuncionario(Funcionario funcionario) {
         String sql = "INSERT INTO Funcionarios(Nome, CPF, Email, DataNascimento, Genero, Cargo, Horario, Id, PasswordPresenca, PasswordSalt) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try (Connection conn = connect();
@@ -74,8 +74,8 @@ public class DbConnection {
         }
     }
 
-    public List<Funcionarios> buscarTodosFuncionarios() {
-        List<Funcionarios> funcionarios = new ArrayList<>();
+    public List<Funcionario> buscarTodosFuncionarios() {
+        List<Funcionario> funcionarios = new ArrayList<>();
         String sql = "SELECT * FROM Funcionarios";
 
         try (Connection conn = connect();
@@ -83,7 +83,7 @@ public class DbConnection {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Funcionarios funcionario = new Funcionarios();
+                Funcionario funcionario = new Funcionario();
                 funcionario.setNome(rs.getString("Nome"));
                 funcionario.setCpf(rs.getString("CPF"));
                 funcionario.setEmail(rs.getString("Email"));
@@ -101,7 +101,7 @@ public class DbConnection {
         return funcionarios;
     }
 
-    public static void desligarFuncionario(Funcionarios funcionario) {
+    public static void desligarFuncionario(Funcionario funcionario) {
         String sql = "DELETE FROM Funcionarios WHERE Id = (?)";
 
         try (Connection conn = connect();
@@ -132,7 +132,7 @@ public class DbConnection {
         }
     }
 
-    public static Funcionarios infoFuncionario(int id){
+    public static Funcionario infoFuncionario(int id){
         try(Connection conn = connect()) {
             String sql = "SELECT Nome, CPF, DataNascimento, Email, Genero, Cargo, Horario, Id FROM Funcionarios WHERE Id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -140,7 +140,7 @@ public class DbConnection {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                Funcionarios funcSelected = new Funcionarios();
+                Funcionario funcSelected = new Funcionario();
 
                 String nome = rs.getString("Nome");
                 String cpf = rs.getString("CPF");
@@ -169,8 +169,8 @@ public class DbConnection {
         return null;
     }
 
-    public List<Funcionarios> buscarFuncionario(String funcPesquisado){
-        List<Funcionarios> funcionarioPesquisado = new ArrayList<>();
+    public List<Funcionario> buscarFuncionario(String funcPesquisado){
+        List<Funcionario> funcionarioPesquisado = new ArrayList<>();
         String sql = "SELECT * FROM Funcionarios WHERE Nome LIKE ?";
 
         try (Connection conn = connect();
@@ -180,7 +180,7 @@ public class DbConnection {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Funcionarios funcionario = new Funcionarios();
+                Funcionario funcionario = new Funcionario();
                 funcionario.setNome(rs.getString("Nome"));
                 funcionario.setCpf(rs.getString("CPF"));
                 funcionario.setEmail(rs.getString("Email"));
