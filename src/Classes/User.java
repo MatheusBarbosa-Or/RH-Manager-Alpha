@@ -1,7 +1,7 @@
 package Classes;
 
 public class User {
-
+    //Caracteristicas da classe
     private String username;
     private String password;
     private String nome;
@@ -9,6 +9,7 @@ public class User {
     private String cargo;
     private Integer Usuarioid;
 
+    //Getters & Setters
     public String getUsername() {
         return username;
     }

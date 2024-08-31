@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TelaCadastro {
-
+    //Criação dos elementos graficos na tela
     private JFrame FrameCadastro;
     private JPanel PanelCadastro;
     private JTextField UsernameFieldCadastro;
@@ -54,15 +54,16 @@ public class TelaCadastro {
     public TelaCadastro(JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
         this.FrameHomepage = frameHomepage;
         this.novoUsuario_Funcionario = novoUsuario_Funcionario;
-        FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
-        genero = "";
 
+
+        FrameCadastro = new JFrame("RH Manager - Alpha (Cadastro)");
         FrameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameCadastro.setSize(700, 600);
         FrameCadastro.setLocationRelativeTo(null);
         FrameCadastro.add(PanelCadastro);
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
+        genero = "";
 
         configurarTela();
 
@@ -171,19 +172,14 @@ public class TelaCadastro {
     }
 
     private int gerarId(String cargo, String cpf) {
-        String prefixo = "";
-        if (cargo.equals("Gerente de Projetos") || cargo.equals("Engenheiro de Software") ||
-                cargo.equals("Desenvolvedor Senior") || cargo.equals("Desenvolvedor Pleno") ||
-                cargo.equals("Desenvolvedor Junior") || cargo.equals("Estagiario de Ti")) {
-            prefixo = "987";
-        } else if (cargo.equals("Gerente Administrativo") || cargo.equals("Auxiliar Administrativo")) {
-            prefixo = "789";
-        } else if (cargo.equals("Advogado Chefe") || cargo.equals("Auxiliar Juridico") ||
-                cargo.equals("Estagiario Juridico")) {
-            prefixo = "897";
-        } else if (cargo.equals("Admin")) {
-            prefixo = "100";
-        }
+        String prefixo = switch (cargo) {
+            case "Gerente de Projetos", "Engenheiro de Software", "Desenvolvedor Senior", "Desenvolvedor Pleno",
+                 "Desenvolvedor Junior", "Estagiario de Ti" -> "987";
+            case "Gerente Administrativo", "Auxiliar Administrativo" -> "789";
+            case "Advogado Chefe", "Auxiliar Juridico", "Estagiario Juridico" -> "897";
+            case "Admin" -> "100";
+            default -> "";
+        };
 
         String cpfDigitos = cpf.replaceAll("\\D", "");
         String suffixo = cpfDigitos.substring(0, 3);
@@ -193,6 +189,7 @@ public class TelaCadastro {
     }
 
     private User cadastrarUsuario() {
+
         String username = UsernameFieldCadastro.getText();
         String password = new String(PasswordFieldCadastro.getPassword());
         String nome = NameFieldCadastro.getText();
@@ -213,20 +210,18 @@ public class TelaCadastro {
             return null;
         }
 
-        if (username != null && password != null) {
-            User usuario = new User();
-            usuario.setUsername(username);
-            usuario.setPassword(password);
-            usuario.setNome(nome);
-            usuario.setCpf(cpf);
-            usuario.setCargo(cargo);
-            usuario.setUsuarioid(gerarId(cargo, cpf));
-            return usuario;
-        }
-        return null;
+        User usuario = new User();
+        usuario.setUsername(username);
+        usuario.setPassword(password);
+        usuario.setNome(nome);
+        usuario.setCpf(cpf);
+        usuario.setCargo(cargo);
+        usuario.setUsuarioid(gerarId(cargo, cpf));
+        return usuario;
     }
 
     private Funcionario cadastrarFuncionario() {
+
         String nome = NameFieldCadastro.getText();
         String cpf = CpfFieldCadastro.getText();
         String email = EmailFieldCadastro.getText();
@@ -264,22 +259,18 @@ public class TelaCadastro {
             return null;
         }
 
-        if (nome != null && cpf != null && email != null && dataNascimento != null && genero != null && cargo != null && horario != null) {
-            Funcionario funcionario = new Funcionario();
-
-            funcionario.setNome(nome);
-            funcionario.setCpf(cpf);
-            funcionario.setEmail(email);
-            funcionario.setDataNascimento(dataNascimento);
-            funcionario.setGenero(genero);
-            funcionario.setCargo(cargo);
-            funcionario.setHorario(horario);
-            funcionario.setFuncionarioId(gerarId(cargo,cpf));
-            funcionario.setPasswordSalt(gerarSal());
-            funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome, funcionario.getPasswordSalt()));
-            return funcionario;
-        }
-        return null;
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome(nome);
+        funcionario.setCpf(cpf);
+        funcionario.setEmail(email);
+        funcionario.setDataNascimento(dataNascimento);
+        funcionario.setGenero(genero);
+        funcionario.setCargo(cargo);
+        funcionario.setHorario(horario);
+        funcionario.setFuncionarioId(gerarId(cargo,cpf));
+        funcionario.setPasswordSalt(gerarSal());
+        funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome, funcionario.getPasswordSalt()));
+        return funcionario;
     }
 
     private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome, String hashedSalt) {
@@ -362,11 +353,9 @@ public class TelaCadastro {
 
         for (String cpfExistente : cpfsExistentes) {
             if (cpf.equals(cpfExistente)) {
-                System.out.println("CPF já Cadastrado");
                 return false;
             }
         }
-        System.out.println("CPF não Cadastrado");
         return true;
     }
 
@@ -375,11 +364,9 @@ public class TelaCadastro {
 
         for (String emailExistente : emailsExistentes) {
             if (email.equals(emailExistente)) {
-                System.out.println("E-mail já Cadastrado");
                 return false;
             }
         }
-        System.out.println("E-mail não Cadastrado");
         return true;
     }
 

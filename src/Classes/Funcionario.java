@@ -1,7 +1,7 @@
 package Classes;
 
 public class Funcionario {
-
+    //Caracteristicas da classe
     private String nome;
     private String cpf;
     private String email;
@@ -13,6 +13,7 @@ public class Funcionario {
     private String passwordPresenca;
     private String passwordSalt;
 
+    //Getters & Setters
     public String getNome() {
         return nome;
     }

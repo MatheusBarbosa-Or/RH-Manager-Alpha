@@ -34,9 +34,10 @@ public class TelaRelatorio {
     private String av;
 
     public TelaRelatorio(JFrame frameHomepage, Funcionario funcionario, User usuarioLogado){
-        FrameRelatorio = new JFrame("RH Manager - Alpha");
         this.FrameHomepage =  frameHomepage;
 
+        //Configurações padrão da tela
+        FrameRelatorio = new JFrame("RH Manager - Alpha");
         FrameRelatorio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameRelatorio.setSize(800, 640);
         FrameRelatorio.setLocationRelativeTo(null);
@@ -137,12 +138,10 @@ public class TelaRelatorio {
     }
 
     private void configurarTela(Funcionario funcionario){
-        if (funcionario.getGenero().equals("Feminino")){
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
-        } else if (funcionario.getGenero().equals("Masculino")) {
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_M_G.png")));
-        } else if (funcionario.getGenero().equals("Outros")) {
-            IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
+        switch (funcionario.getGenero()) {
+            case "Feminino" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
+            case "Masculino" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_M_G.png")));
+            case "Outros" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
         }
 
         TitleRelatorio.setText("Relatorio: " + funcionario.getNome());
@@ -158,6 +157,7 @@ public class TelaRelatorio {
 
     public String gerarRelatorio(Funcionario funcionario, String av, User usuarioLogado) throws IOException{
         String obs = ObsTextAreaRelatorio.getText();
+
         String relatorio = "Relatorio: \n" + "\nNome: " + funcionario.getNome() + "\nId: " + funcionario.getFuncionarioId() +
                 "\nCargo: " + funcionario.getCargo() + "\nHorario: " + funcionario.getHorario() + "\nAvaliação: " + av +
                 "\nObservação: \n" + obs;

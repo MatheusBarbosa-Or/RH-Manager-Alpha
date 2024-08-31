@@ -8,7 +8,7 @@ import Classes.User;
 import DbConnect.DbConnection;
 
 public class TelaLogin {
-
+    //Criação dos elementos graficos na tela
     private JFrame FrameLogin;
     private JPanel PanelLogin;
     private JTextField UsernameFieldLogin;
@@ -22,7 +22,7 @@ public class TelaLogin {
     private JLabel DbConnectionIcon;
 
     public TelaLogin() {
-
+        //Configurações padrão da tela
         FrameLogin = new JFrame("RH Manager - Alpha");
         FrameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameLogin.setSize(600, 360);
@@ -49,6 +49,7 @@ public class TelaLogin {
     }
 
     private User realizarLogin() {
+        //Função responsável por enviar os parametros do usuario para verificação do login
         String username = UsernameFieldLogin.getText();
         String password = new String(PasswordFieldLogin.getPassword());
         User usuario = DbConnection.realizarLogin(username, password);
@@ -57,6 +58,7 @@ public class TelaLogin {
     }
 
     public void limparCampos() {
+        //Função para evitar que informações sejam mantidas quando a tela voltar a ficar visivel.
         UsernameFieldLogin.setText("");
         PasswordFieldLogin.setText("");
     }

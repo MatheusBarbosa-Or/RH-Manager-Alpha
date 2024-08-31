@@ -6,8 +6,10 @@ import DbConnect.DbConnection;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class TelaDesligamento {
+    //Criação dos elementos graficos na tela
     private JButton ButtonCancelarDesl;
     private JButton ButtonConfirmDesl;
     private JLabel IconDesl;
@@ -23,6 +25,7 @@ public class TelaDesligamento {
         this.FrameHomepage = frameHomepage;
         this.funcionario = funcionario;
 
+        //Configurações padrão da tela
         FrameDesligamento = new JFrame("RH Manager - Alpha");
         FrameDesligamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameDesligamento.setSize(540, 340);
@@ -46,27 +49,19 @@ public class TelaDesligamento {
             public void actionPerformed(ActionEvent e) {
 
                 DbConnection.desligarFuncionario(funcionario);
-                if (funcionario != null) {
-                    JOptionPane.showMessageDialog(FrameDesligamento, " Funcionario desligado com sucesso!\n");
-                    FrameDesligamento.setVisible(false);
-                    FrameHomepage.setVisible(true);
-                    onSave.run();
-                } else {
-                    JOptionPane.showMessageDialog(FrameDesligamento, "Nome de usuario ou senha inválida!");
-                    FrameDesligamento.setVisible(false);
-                    FrameHomepage.setVisible(true);
-                }
+                JOptionPane.showMessageDialog(FrameDesligamento, " Funcionario desligado com sucesso!\n");
+                FrameDesligamento.setVisible(false);
+                FrameHomepage.setVisible(true);
+                onSave.run();
             }
         });
     }
 
     private void configurarTela(Funcionario funcionario){
-        if (funcionario.getGenero().equals("Feminino")){
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
-        } else if (funcionario.getGenero().equals("Masculino")) {
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
-        } else if (funcionario.getGenero().equals("Outros")) {
-            ProfileFuncDesl.setIcon(new ImageIcon(getClass().getResource("/IMG/Outros2.png")));
+        switch (funcionario.getGenero()) {
+            case "Feminino" -> ProfileFuncDesl.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile F.png"))));
+            case "Masculino" -> ProfileFuncDesl.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile.png"))));
+            case "Outros" -> ProfileFuncDesl.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Outros2.png"))));
         }
 
         MessageDsl.setText("<html>Deseja realmente desligar o funcionario:<br>" + "<br>"

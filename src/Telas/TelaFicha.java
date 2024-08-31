@@ -3,6 +3,7 @@ package Telas;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import Classes.Funcionario;
 
@@ -45,12 +46,10 @@ public class TelaFicha {
     }
 
     private void configurarTela(Funcionario funcionario){
-        if (funcionario.getGenero().equals("Feminino")){
-            ProfileFicha.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile F.png")));
-        } else if (funcionario.getGenero().equals("Masculino")) {
-            ProfileFicha.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile.png")));
-        } else if (funcionario.getGenero().equals("Outros")) {
-            ProfileFicha.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
+        switch (funcionario.getGenero()) {
+            case "Feminino" -> ProfileFicha.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile F.png"))));
+            case "Masculino" -> ProfileFicha.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile.png"))));
+            case "Outros" -> ProfileFicha.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/do-utilizador (1).png"))));
         }
 
         NameTitleFicha.setText("Nome: " + funcionario.getNome());

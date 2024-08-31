@@ -12,6 +12,7 @@ import Classes.User;
 import DbConnect.DbConnection;
 
 public class TelaHomepage extends Component {
+    //Criação dos elementos graficos na tela
     private JTextField FieldPesquisaHomepage;
     private JTable TableFunHomepage;
     private JButton ButtonPesquisaHomepage;
@@ -33,8 +34,9 @@ public class TelaHomepage extends Component {
 
     public TelaHomepage(JFrame frameLogin, User usuarioLogado){
         this.FrameLogin = frameLogin;
-        FrameHomepage = new JFrame("RH Manager - Alpha");
 
+        //Configurações padrão da tela
+        FrameHomepage = new JFrame("RH Manager - Alpha");
         FrameHomepage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FrameHomepage.setSize(1024, 768);
         FrameHomepage.setLocationRelativeTo(null);
@@ -67,9 +69,9 @@ public class TelaHomepage extends Component {
         ButtonFichaHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer FuncSelect = TableFunHomepage.getSelectedRow();
-                if(FuncSelect != -1){
-                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                int FuncSelected = TableFunHomepage.getSelectedRow();
+                if(FuncSelected != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaFicha telaFicha = new TelaFicha(FrameHomepage, funcionario);
@@ -94,9 +96,9 @@ public class TelaHomepage extends Component {
         ButtonDeslHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer FuncSelect = TableFunHomepage.getSelectedRow();
-                if(FuncSelect != -1){
-                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                int FuncSelected = TableFunHomepage.getSelectedRow();
+                if(FuncSelected != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario, () -> configurarTabela());
@@ -114,9 +116,9 @@ public class TelaHomepage extends Component {
         ButtonRelatorioHomepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer FuncSelect = TableFunHomepage.getSelectedRow();
-                if(FuncSelect != -1){
-                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelect, 3); // Coluna ID
+                int FuncSelected = TableFunHomepage.getSelectedRow();
+                if(FuncSelected != -1){
+                    Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
                         TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario, usuarioLogado);
@@ -176,6 +178,7 @@ public class TelaHomepage extends Component {
     }
 
     private void configurarTela(User usuarioLogado){
+        //Condiciona os elementos a serem exibidos apenas para os administradores
         if(usuarioLogado.getCargo().equals("Admin")){
             ButtonDeslHomepage.setVisible(true);
             ButtonNewUserHomepage.setVisible(true);
