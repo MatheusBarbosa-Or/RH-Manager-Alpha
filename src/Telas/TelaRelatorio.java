@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class TelaRelatorio {
     private JPanel PanelRelatorio;
@@ -28,8 +29,8 @@ public class TelaRelatorio {
     private JButton Star5Relatorio;
     private JButton enviarButton;
     private JLabel InfoTextRelatorio;
-    private JFrame FrameRelatorio;
-    private JFrame FrameHomepage;
+    private final JFrame FrameRelatorio;
+    private final JFrame FrameHomepage;
 
     private String av;
 
@@ -58,11 +59,11 @@ public class TelaRelatorio {
         Star1Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Star1Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star2Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star3Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star4Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star5Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
+                Star1Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star2Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star3Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star4Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star5Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
                 av = "1";
             }
         });
@@ -70,11 +71,11 @@ public class TelaRelatorio {
         Star2Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Star1Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star2Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star3Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star4Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star5Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
+                Star1Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star2Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star3Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star4Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star5Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
                 av = "2";
             }
         });
@@ -82,11 +83,11 @@ public class TelaRelatorio {
         Star3Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Star1Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star2Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star3Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star4Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
-                Star5Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
+                Star1Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star2Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star3Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star4Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
+                Star5Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
                 av = "3";
             }
         });
@@ -94,11 +95,11 @@ public class TelaRelatorio {
         Star4Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Star1Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star2Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star3Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star4Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star5Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/EstrelaVazia.png")));
+                Star1Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star2Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star3Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star4Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star5Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/EstrelaVazia.png"))));
                 av = "4";
             }
         });
@@ -106,11 +107,11 @@ public class TelaRelatorio {
         Star5Relatorio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Star1Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star2Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star3Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star4Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
-                Star5Relatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Estrela.png")));
+                Star1Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star2Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star3Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star4Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
+                Star5Relatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Estrela.png"))));
                 av = "5";
             }
         });
@@ -139,9 +140,9 @@ public class TelaRelatorio {
 
     private void configurarTela(Funcionario funcionario){
         switch (funcionario.getGenero()) {
-            case "Feminino" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_F_G.png")));
-            case "Masculino" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/Profile_M_G.png")));
-            case "Outros" -> IconRelatorio.setIcon(new ImageIcon(getClass().getResource("/IMG/do-utilizador (1).png")));
+            case "Feminino" -> IconRelatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile_F_G.png"))));
+            case "Masculino" -> IconRelatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/Profile_M_G.png"))));
+            case "Outros" -> IconRelatorio.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/IMG/do-utilizador (1).png"))));
         }
 
         TitleRelatorio.setText("Relatorio: " + funcionario.getNome());

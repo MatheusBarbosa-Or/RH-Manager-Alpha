@@ -17,13 +17,11 @@ public class TelaDesligamento {
     private JLabel MessageDsl;
     private JLabel ProfileFuncDesl;
 
-    private JFrame FrameHomepage;
-    private JFrame FrameDesligamento;
-    private Funcionario funcionario;
+    private final JFrame FrameHomepage;
+    private final JFrame FrameDesligamento;
 
     public TelaDesligamento(JFrame frameHomepage, Funcionario funcionario, Runnable onSave){
         this.FrameHomepage = frameHomepage;
-        this.funcionario = funcionario;
 
         //Configurações padrão da tela
         FrameDesligamento = new JFrame("RH Manager - Alpha");

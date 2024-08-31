@@ -20,8 +20,8 @@ public class TelaFicha {
     private JButton ButtonSaidaFicha;
     private JLabel TurnTitleFicha;
     private JButton ButtonAdminRegistro;
-    private JFrame FrameFicha;
-    private JFrame FrameHomepage;
+    private final JFrame FrameFicha;
+    private final JFrame FrameHomepage;
 
     public TelaFicha(JFrame frameHomepage, Funcionario funcionario){
         FrameFicha = new JFrame("RH Manager - Alpha");

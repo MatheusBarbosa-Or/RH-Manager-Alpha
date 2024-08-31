@@ -27,9 +27,9 @@ public class TelaHomepage extends Component {
     private JLabel NomeTeste;
     private JLabel CargoTeste;
     private JLabel HorarioTeste;
-    private JFrame FrameHomepage;
+    private final JFrame FrameHomepage;
 
-    private JFrame FrameLogin;
+    private final JFrame FrameLogin;
     private int novoUsuario_Funcionario;
 
     public TelaHomepage(JFrame frameLogin, User usuarioLogado){
@@ -52,7 +52,7 @@ public class TelaHomepage extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 1;
-                TelaCadastro telaCadastro = new TelaCadastro(FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
+                new TelaCadastro(FrameHomepage, novoUsuario_Funcionario, () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -61,7 +61,7 @@ public class TelaHomepage extends Component {
             @Override
             public void actionPerformed(ActionEvent e) {
                 novoUsuario_Funcionario = 2;
-                TelaCadastro telaCadastro = new TelaCadastro(FrameHomepage, novoUsuario_Funcionario,  () -> configurarTabela());
+                new TelaCadastro(FrameHomepage, novoUsuario_Funcionario, () -> configurarTabela());
                 FrameHomepage.setVisible(false);
             }
         });
@@ -74,7 +74,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
-                        TelaFicha telaFicha = new TelaFicha(FrameHomepage, funcionario);
+                        new TelaFicha(FrameHomepage, funcionario);
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -101,7 +101,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
-                        TelaDesligamento telaDesligamento = new TelaDesligamento(FrameHomepage, funcionario, () -> configurarTabela());
+                        new TelaDesligamento(FrameHomepage, funcionario, () -> configurarTabela());
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -121,7 +121,7 @@ public class TelaHomepage extends Component {
                     Integer id = (Integer) TableFunHomepage.getValueAt(FuncSelected, 3); // Coluna ID
                     Funcionario funcionario = DbConnection.infoFuncionario(id);
                     if (funcionario != null) {
-                        TelaRelatorio telaRelatorio = new TelaRelatorio(FrameHomepage, funcionario, usuarioLogado);
+                        new TelaRelatorio(FrameHomepage, funcionario, usuarioLogado);
                         FrameHomepage.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(FrameHomepage, "Erro ao buscar detalhes do funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);

@@ -11,16 +11,13 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.Calendar;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TelaCadastro {
     //Criação dos elementos graficos na tela
-    private JFrame FrameCadastro;
+    private final JFrame FrameCadastro;
     private JPanel PanelCadastro;
     private JTextField UsernameFieldCadastro;
     private JPasswordField PasswordFieldCadastro;
@@ -47,9 +44,8 @@ public class TelaCadastro {
     private JComboBox PosComboBoxCadastro;
     private JComboBox TurnComboBoxCadastro;
 
-    private JFrame FrameHomepage;
-    private String genero;
-    private int novoUsuario_Funcionario;
+    private final JFrame FrameHomepage;
+    private final int novoUsuario_Funcionario;
 
     public TelaCadastro(JFrame frameHomepage, int novoUsuario_Funcionario, Runnable onSave) {
         this.FrameHomepage = frameHomepage;
@@ -63,7 +59,6 @@ public class TelaCadastro {
         FrameCadastro.add(PanelCadastro);
         FrameCadastro.pack();
         FrameCadastro.setVisible(true);
-        genero = "";
 
         configurarTela();
 
@@ -196,7 +191,7 @@ public class TelaCadastro {
         String cpf = CpfFieldCadastro.getText();
         String cargo = (String) PosComboBoxCadastro.getSelectedItem();
 
-        if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || cargo.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || nome.isEmpty() || cpf.isEmpty() || Objects.requireNonNull(cargo).isEmpty()) {
             JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
         }
@@ -241,7 +236,7 @@ public class TelaCadastro {
             return null;
         }
 
-        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || genero.isEmpty() || cargo.isEmpty()) {
+        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || dataNascimento.isEmpty() || Objects.requireNonNull(genero).isEmpty() || Objects.requireNonNull(cargo).isEmpty()) {
             JOptionPane.showMessageDialog(FrameCadastro, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
         }
@@ -269,31 +264,29 @@ public class TelaCadastro {
         funcionario.setHorario(horario);
         funcionario.setFuncionarioId(gerarId(cargo,cpf));
         funcionario.setPasswordSalt(gerarSal());
-        funcionario.setPasswordPresenca(gerarSenhaPresenca(funcionario.getFuncionarioId(),cpf, nome, funcionario.getPasswordSalt()));
+        funcionario.setPasswordPresenca(gerarSenhaPresenca(cpf, nome, funcionario.getPasswordSalt()));
         return funcionario;
     }
 
-    private String gerarSenhaPresenca(Integer funcionarioId, String cpf, String nome, String hashedSalt) {
+    private String gerarSenhaPresenca(String cpf, String nome, String hashedSalt) {
         String password = nome.substring(0, 2) + "#" + cpf.substring(0, 3);
         String saltedPassword = password + hashedSalt;
-        String hashedPassword = BCrypt.withDefaults().hashToString(12, saltedPassword.toCharArray());
 
-        return hashedPassword;
+        return BCrypt.withDefaults().hashToString(12, saltedPassword.toCharArray());
     }
 
     private String gerarSal() {
         Random random = new Random();
         int sal = random.nextInt(90000) + 10000;
         String salt = String.valueOf(sal);
-        String hashedSalt = BCrypt.withDefaults().hashToString(12, salt.toCharArray());
 
-        return hashedSalt;
+        return BCrypt.withDefaults().hashToString(12, salt.toCharArray());
     }
 
     private boolean isCpfValid (String cpf){
         String  cpfVerify = cpf.substring(0,3) + cpf.substring(4,7) + cpf.substring(8,11) + cpf.substring(12,14);
 
-        if (cpfVerify.equals("00000000000") || cpfVerify.equals("11111111111") || cpfVerify.equals("22222222222") || cpfVerify.equals("33333333333") || cpfVerify.equals("44444444444") || cpfVerify.equals("55555555555") || cpfVerify.equals("66666666666") || cpfVerify.equals("77777777777") || cpfVerify.equals("88888888888") || cpfVerify.equals("99999999999") || (cpfVerify.length() != 11)){
+        if (cpfVerify.equals("00000000000") || cpfVerify.equals("11111111111") || cpfVerify.equals("22222222222") || cpfVerify.equals("33333333333") || cpfVerify.equals("44444444444") || cpfVerify.equals("55555555555") || cpfVerify.equals("66666666666") || cpfVerify.equals("77777777777") || cpfVerify.equals("88888888888") || cpfVerify.equals("99999999999")){
             return(false);
         }
 
@@ -308,7 +301,7 @@ public class TelaCadastro {
                 // converte o i-esimo caractere do CPF em um numero:
                 // por exemplo, transforma o caractere "0" no inteiro 0
                 // (48 eh a posicao de "0" na tabela ASCII)
-                num = (int)(cpfVerify.charAt(i) - 48);
+                num = cpfVerify.charAt(i) - 48;
                 soma = soma + (num * peso);
                 peso = peso - 1;
             }
@@ -324,7 +317,7 @@ public class TelaCadastro {
             soma = 0;
             peso = 11;
             for(i = 0; i < 10; i++) {
-                num = (int)(cpfVerify.charAt(i) - 48);
+                num = cpfVerify.charAt(i) - 48;
                 soma = soma + (num * peso);
                 peso = peso - 1;
             }
@@ -337,11 +330,7 @@ public class TelaCadastro {
             }
 
             // Verifica se os digitos calculados conferem com os digitos informados.
-            if ((digito10 == cpfVerify.charAt(9)) && (digito11 == cpfVerify.charAt(10))){
-                return(true);
-            } else{
-                return(false);
-            }
+            return (digito10 == cpfVerify.charAt(9)) && (digito11 == cpfVerify.charAt(10));
 
         } catch (InputMismatchException erro) {
             return(false);

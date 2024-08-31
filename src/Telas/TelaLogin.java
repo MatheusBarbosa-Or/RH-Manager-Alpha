@@ -9,7 +9,7 @@ import DbConnect.DbConnection;
 
 public class TelaLogin {
     //Criação dos elementos graficos na tela
-    private JFrame FrameLogin;
+    private final JFrame FrameLogin;
     private JPanel PanelLogin;
     private JTextField UsernameFieldLogin;
     private JPasswordField PasswordFieldLogin;
@@ -37,7 +37,7 @@ public class TelaLogin {
                 User usuarioLogado = realizarLogin();
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(FrameLogin, "Login feito com sucesso!\n");
-                    TelaHomepage telaHomepage = new TelaHomepage(FrameLogin, usuarioLogado);
+                    new TelaHomepage(FrameLogin, usuarioLogado);
                     FrameLogin.setVisible(false);
                     limparCampos();
                 } else {
@@ -52,9 +52,8 @@ public class TelaLogin {
         //Função responsável por enviar os parametros do usuario para verificação do login
         String username = UsernameFieldLogin.getText();
         String password = new String(PasswordFieldLogin.getPassword());
-        User usuario = DbConnection.realizarLogin(username, password);
 
-        return usuario;
+        return DbConnection.realizarLogin(username, password);
     }
 
     public void limparCampos() {
